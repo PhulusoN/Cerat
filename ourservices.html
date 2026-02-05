@@ -465,23 +465,15 @@
         }
 
         .icon-location::before {
-            content: " ";
+            content: "📍 ";
         }
 
         .icon-email::before {
-            content: " ";
+            content: "✉️ ";
         }
 
         .icon-phone::before {
-            content: " ";
-        }
-
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
+            content: "📞 ";
         }
 
         @media (max-width: 768px) {
@@ -584,7 +576,7 @@
             <span></span>
         </div>
         <nav class="nav" id="navMenu">
-            <a href="index.html">Home</a>
+            <a href="home.html">Home</a>
             <a href="aboutus.html">About Us</a>
             <a href="ourservices.html">Services</a>
             <a href="store1.html">Supplies</a>
@@ -592,251 +584,91 @@
         </nav>
     </header>
 
-    <div id="home" class="page active">
-        <section class="hero">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <h1>Our <span>services</span></h1>
-                    <p>We provide innovative solutions to help your business grow and succeed in the digital world. Let us transform your vision into reality.</p>
-                </div>
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Our <span>services</span></h1>
+                <p>We provide innovative solutions to help your business grow and succeed in the digital world. Let us transform your vision into reality.</p>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="services" class="services">
-            <div class="services-container">
-                <div class="services-header">
-                    <h2>Our Services</h2>
-                    <p>Discover what we can do for you</p>
+    <section id="services" class="services">
+        <div class="services-container">
+            <div class="services-header">
+                <h2>Our Services</h2>
+                <p>Discover what we can do for you</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://i.pinimg.com/736x/b9/0e/08/b90e0852124129b8fcd5f49edd22a2d3.jpg" alt="Electrical Services" class="service-card-image">
+                    <div class="service-overlay">
+                        <h3>Electrical Services</h3>
+                        <a href="Elecrical.html" class="service-btn">View Details →</a>
+                    </div>
                 </div>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <img src="https://i.pinimg.com/736x/b9/0e/08/b90e0852124129b8fcd5f49edd22a2d3.jpg" alt="Electrical Services" class="service-card-image">
-                        <div class="service-overlay">
-                            <h3>Electrical Services</h3>
-                           <a href="" onclick="showPage('electrical'); return false;" class="service-btn">View Details →</a>
-                        </div>
-                    </div>
 
-                    <div class="service-card">
-                        <img src="https://i.pinimg.com/736x/76/f6/69/76f669a6bb92674901dd6b3305dfee2d.jpg" alt="Mechanical Services" class="service-card-image">
-                        <div class="service-overlay">
-                            <h3>Mechanical Services</h3>
-                            <a href="mecahnical.html" class="service-btn">View Details →</a>
-                        </div>
+                <div class="service-card">
+                    <img src="https://i.pinimg.com/736x/76/f6/69/76f669a6bb92674901dd6b3305dfee2d.jpg" alt="Mechanical Services" class="service-card-image">
+                    <div class="service-overlay">
+                        <h3>Mechanical Services</h3>
+                        <a href="mecahnical.html" class="service-btn">View Details →</a>
                     </div>
+                </div>
 
-                    <div class="service-card">
-                        <img src="https://i.pinimg.com/736x/57/75/97/577597b11b2c8b4947df13ecc2263589.jpg" alt="Maintenance & Energy Services" class="service-card-image">
-                        <div class="service-overlay">
-                            <h3>Maintenance & Energy Services</h3>
-                            <a href="maintenance&energy.html" class="service-btn">View Details →</a>
-                        </div>
+                <div class="service-card">
+                    <img src="https://i.pinimg.com/736x/57/75/97/577597b11b2c8b4947df13ecc2263589.jpg" alt="Maintenance & Energy Services" class="service-card-image">
+                    <div class="service-overlay">
+                        <h3>Maintenance & Energy Services</h3>
+                        <a href="maintenance&energy.html" class="service-btn">View Details →</a>
                     </div>
+                </div>
 
-                    <div class="service-card">
-                        <img src="https://i.pinimg.com/736x/1a/0a/b4/1a0ab4e00a136fbdbf475d4bc3f0b7aa.jpg" alt="Building Services" class="service-card-image">
-                        <div class="service-overlay">
-                            <h3>Building Services</h3>
-                            <a href="building.html" class="service-btn">View Details →</a>
-                        </div>
+                <div class="service-card">
+                    <img src="https://i.pinimg.com/736x/1a/0a/b4/1a0ab4e00a136fbdbf475d4bc3f0b7aa.jpg" alt="Building Services" class="service-card-image">
+                    <div class="service-overlay">
+                        <h3>Building Services</h3>
+                        <a href="building.html" class="service-btn">View Details →</a>
                     </div>
+                </div>
 
-                    <div class="service-card">
-                        <img src="https://i.pinimg.com/1200x/3c/bb/f7/3cbbf728dda82676d5cbea5fc952dbcd.jpg" alt="Design Development" class="service-card-image">
-                        <div class="service-overlay">
-                            <h3>Design Development</h3>
-                            <a href="designDevelopment.html" class="service-btn">View Details →</a>
-                        </div>
+                <div class="service-card">
+                    <img src="https://i.pinimg.com/1200x/3c/bb/f7/3cbbf728dda82676d5cbea5fc952dbcd.jpg" alt="Design Development" class="service-card-image">
+                    <div class="service-overlay">
+                        <h3>Design Development</h3>
+                        <a href="designDevelopment.html" class="service-btn">View Details →</a>
                     </div>
+                </div>
 
-                    <div class="service-card">
-                        <img src="https://i.pinimg.com/1200x/f5/7f/cb/f57fcb397ff74d081ca95a2e039c419e.jpg" alt="Supply & Procurement" class="service-card-image">
-                        <div class="service-overlay">
-                            <h3>Supply & Procurement</h3>
-                            <a href="Supply&procurment.html" class="service-btn">View Details →</a>
-                        </div>
+                <div class="service-card">
+                    <img src="https://i.pinimg.com/1200x/f5/7f/cb/f57fcb397ff74d081ca95a2e039c419e.jpg" alt="Supply & Procurement" class="service-card-image">
+                    <div class="service-overlay">
+                        <h3>Supply & Procurement</h3>
+                        <a href="Supply&procurment.html" class="service-btn">View Details →</a>
                     </div>
+                </div>
 
-                    <div class="service-card">
-                        <img src="https://i.pinimg.com/1200x/46/78/fa/4678fa5400bee4af5937d9ec05ecb627.jpg" alt="Plant Optimization" class="service-card-image">
-                        <div class="service-overlay">
-                            <h3>Plant Optimization & Management</h3>
-                            <a href="plant.html" class="service-btn">View Details →</a>
-                        </div>
+                <div class="service-card">
+                    <img src="https://i.pinimg.com/1200x/46/78/fa/4678fa5400bee4af5937d9ec05ecb627.jpg" alt="Plant Optimization" class="service-card-image">
+                    <div class="service-overlay">
+                        <h3>Plant Optimization & Management</h3>
+                        <a href="plant.html" class="service-btn">View Details →</a>
                     </div>
+                </div>
 
-                    <div class="service-card">
-                        <img src="https://i.pinimg.com/736x/0d/23/11/0d23118accb8c768c6af7a3158eeea4d.jpg" alt="Consulting & Project Management" class="service-card-image">
-                        <div class="service-overlay">
-                            <h3>Consulting & Project Management</h3>
-                            <a href="consulting&projectManagement.html" class="service-btn">View Details →</a>
-                        </div>
+                <div class="service-card">
+                    <img src="https://i.pinimg.com/736x/0d/23/11/0d23118accb8c768c6af7a3158eeea4d.jpg" alt="Consulting & Project Management" class="service-card-image">
+                    <div class="service-overlay">
+                        <h3>Consulting & Project Management</h3>
+                        <a href="consulting&projectManagement.html" class="service-btn">View Details →</a>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <div id="electrical" class="page">
-        <section class="service-detail">
-            <div class="detail-container">
-                <div class="detail-header">
-                    <h1>Electrical Services</h1>
-                    <p>Powering Your Projects with Expert Electrical Solutions</p>
-                </div>
-                <div class="detail-content">
-                    <img src="https://i.pinimg.com/736x/b9/0e/08/b90e0852124129b8fcd5f49edd22a2d3.jpg" alt="Electrical Services" class="detail-image">
-                    
-                    <h2>Comprehensive Electrical Engineering Solutions</h2>
-                    <p>At CERAT, we deliver world-class electrical engineering services for commercial, industrial, and residential projects. Our team of certified electricians and engineers ensures that every installation meets the highest safety standards and regulatory requirements.</p>
-
-                    <h3>Our Electrical Services Include:</h3>
-                    <ul>
-                        <li>High Voltage (HV) and Low Voltage (LV) Installations</li>
-                        <li>Power Distribution Systems Design and Installation</li>
-                        <li>Electrical Load Calculations and Planning</li>
-                        <li>Lightning Protection Systems</li>
-                        <li>Emergency Power and Generator Systems</li>
-                        <li>Lighting Design and Energy-Efficient Solutions</li>
-                        <li>Electrical Testing and Commissioning</li>
-                        <li>Fault Finding and Troubleshooting</li>
-                        <li>Compliance and Safety Audits</li>
-                    </ul>
-
-                    <h3>Why Choose Our Electrical Services?</h3>
-                    <p>With years of experience in the industry, CERAT has established itself as a trusted partner for electrical solutions. We combine technical expertise with innovative approaches to deliver cost-effective, reliable, and sustainable electrical systems.</p>
-                    
-                    <p>Our commitment to quality, safety, and client satisfaction ensures that your electrical infrastructure operates efficiently and safely for years to come.</p>
-
-                    <a href="#" onclick="showPage('home'); return false;" class="back-btn">← Back to Services</a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="mechanical" class="page">
-        <section class="service-detail">
-            <div class="detail-container">
-                <div class="detail-header">
-                    <h1>Mechanical Services</h1>
-                    <p>Engineering Excellence in Mechanical Systems</p>
-                </div>
-                <div class="detail-content">
-                    <img src="https://i.pinimg.com/736x/76/f6/69/76f669a6bb92674901dd6b3305dfee2d.jpg" alt="Mechanical Services" class="detail-image">
-                    
-                    <h2>Advanced Mechanical Engineering Solutions</h2>
-                    <p>CERAT provides comprehensive mechanical engineering services designed to optimize performance, efficiency, and reliability across all types of facilities. From HVAC systems to industrial machinery, we deliver solutions that meet your specific needs.</p>
-
-                    <h3>Our Mechanical Services Include:</h3>
-                    <ul>
-                        <li>HVAC Design, Installation, and Optimization</li>
-                        <li>Air Conditioning and Ventilation Systems</li>
-                        <li>Plumbing and Sanitation Systems</li>
-                        <li>Fire Protection and Suppression Systems</li>
-                        <li>Industrial Piping and Process Systems</li>
-                        <li>Refrigeration Systems</li>
-                        <li>Boiler and Heating Systems</li>
-                        <li>Mechanical Equipment Installation</li>
-                        <li>System Balancing and Commissioning</li>
-                    </ul>
-
-                    <h3>Industry-Leading Standards</h3>
-                    <p>Our mechanical engineers utilize the latest technologies and methodologies to ensure that your systems operate at peak performance. We focus on energy efficiency, sustainability, and long-term reliability in all our mechanical installations.</p>
-                    
-                    <p>Whether you need a complete mechanical system for a new building or upgrades to existing infrastructure, CERAT has the expertise to deliver exceptional results.</p>
-
-                    <a href="#" onclick="showPage('home'); return false;" class="back-btn">← Back to Services</a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="maintenance" class="page">
-        <section class="service-detail">
-            <div class="detail-container">
-                <div class="detail-header">
-                    <h1>Maintenance & Energy Services</h1>
-                    <p>Sustaining Performance, Maximizing Efficiency</p>
-                </div>
-                <div class="detail-content">
-                    <img src="https://i.pinimg.com/1200x/7a/64/21/7a64219d91f89d726fa456cf41e0495e.jpg" alt="Maintenance & Energy Services" class="detail-image">
-                    
-                    <h2>Proactive Maintenance and Energy Management</h2>
-                    <p>At CERAT, we understand that proper maintenance and energy management are crucial for minimizing downtime, reducing operational costs, and extending the lifespan of your equipment. Our comprehensive services keep your facilities running smoothly while optimizing energy consumption.</p>
-
-                    <h3>Maintenance Services:</h3>
-                    <ul>
-                        <li>Preventive Maintenance Programs</li>
-                        <li>Planned Maintenance Schedules</li>
-                        <li>Equipment Servicing and Repairs</li>
-                        <li>Emergency Breakdown Support</li>
-                        <li>Condition Monitoring and Diagnostics</li>
-                        <li>Predictive Maintenance Solutions</li>
-                        <li>Facility Management Services</li>
-                    </ul>
-
-                    <h3>Energy Services:</h3>
-                    <ul>
-                        <li>Energy Audits and Assessments</li>
-                        <li>Energy Efficiency Improvements</li>
-                        <li>Renewable Energy Solutions (Solar, Wind)</li>
-                        <li>Power Factor Correction</li>
-                        <li>LED Lighting Retrofits</li>
-                        <li>Building Management Systems (BMS)</li>
-                        <li>Carbon Footprint Reduction Strategies</li>
-                        <li>Utility Cost Optimization</li>
-                    </ul>
-
-                    <h3>Sustainable and Cost-Effective Solutions</h3>
-                    <p>Our maintenance and energy services are designed to reduce your environmental impact while improving your bottom line. We help you achieve sustainability goals through smart energy management and proactive maintenance strategies.</p>
-
-                    <a href="#" onclick="showPage('home'); return false;" class="back-btn">← Back to Services</a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <div id="building" class="page">
-        <section class="service-detail">
-            <div class="detail-container">
-                <div class="detail-header">
-                    <h1>Building Services</h1>
-                    <p>Complete Building Solutions from Concept to Completion</p>
-                </div>
-                <div class="detail-content">
-                    <img src="https://i.pinimg.com/736x/1a/0a/b4/1a0ab4e00a136fbdbf475d4bc3f0b7aa.jpg" alt="Building Services" class="detail-image">
-                    
-                    <h2>Integrated Building Services Engineering</h2>
-                    <p>CERAT offers comprehensive building services that integrate all aspects of modern construction and facility management. Our multidisciplinary approach ensures seamless coordination between electrical, mechanical, and structural systems.</p>
-
-                    <h3>Our Building Services Include:</h3>
-                    <ul>
-                        <li>MEP (Mechanical, Electrical, Plumbing) Design and Installation</li>
-                        <li>Building Automation and Control Systems</li>
-                        <li>Smart Building Technologies</li>
-                        <li>Security and Access Control Systems</li>
-                        <li>Fire Detection and Alarm Systems</li>
-                        <li>Audiovisual and Communication Systems</li>
-                        <li>Vertical Transportation Systems (Lifts and Escalators)</li>
-                        <li>Water Treatment and Management</li>
-                        <li>Waste Management Solutions</li>
-                        <li>Green Building Certifications Support</li>
-                    </ul>
-
-                    <h3>Innovative and Sustainable Design</h3>
-                    <p>We specialize in creating intelligent building environments that prioritize occupant comfort, operational efficiency, and environmental responsibility. Our designs incorporate the latest technologies to create spaces that are both functional and sustainable.</p>
-                    
-                    <h3>Project Management Excellence</h3>
-                    <p>From initial concept through to final handover, our experienced project managers ensure that your building services are delivered on time, within budget, and to the highest quality standards. We coordinate with all stakeholders to ensure smooth project execution.</p>
-
-                    <a href="#" onclick="showPage('home'); return false;" class="back-btn">← Back to Services</a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-        <footer>
-           <div class="footer-container">
+    <footer>
+        <div class="footer-container">
             <div class="footer-section">
                 <h3>Contact Us</h3>
                 <p class="icon-location">
@@ -846,7 +678,7 @@
                    
                 </p>
                 <p class="icon-phone">+27 79 028 6464</p>
-                <a href="mailto:info@yourcompany.com" class="email-link icon-email">
+                <a href="mailto:info@Cerat.com" class="email-link icon-email">
                     info@Cerat.com
                 </a>
             </div>
@@ -861,7 +693,7 @@
             <div class="footer-section">
                 <h3>Follow Us</h3>
                 
-               <div class="social-links">
+                <div class="social-links">
                    
                     <a href="https://www.instagram.com/ceratengineering_ptyltd?igsh=MXhrdnJ5Zzk4bDhvcA%3D%3D" target="cerat pty ltd" title="Twitter">
                         <span>Instagram</span>
@@ -882,13 +714,13 @@
                 </div>
             </div>
         </div>
-          <p style="text-align: center; font-size: 12px; color: #888; margin-top: 20px;">
+        <p style="text-align: center; font-size: 12px; color: #888; margin-top: 20px;">
     Developed by <a href="https://www.instagram.com/phuluso_nemavhola/" style="color: #666; text-decoration: underline;">PHULUSO</a>
 </p>
         <div class="footer-bottom">
             <p>&copy; 2026 Cerat PTY(LTD). All rights reserved.</p>
         </div>
-        </footer>
+    </footer>
     
 
     <script>
@@ -904,18 +736,7 @@
                 navMenu.classList.remove('active');
             });
         });
-
-        function showPage(pageId) {
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => page.classList.remove('active'));
-            
-            const selectedPage = document.getElementById(pageId);
-            if (selectedPage) {
-                selectedPage.classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        }
     </script>
 </body>
-
 </html>
+
