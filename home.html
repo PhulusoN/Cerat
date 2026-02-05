@@ -1,0 +1,1536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerat (pty)ltd </title>
+    <link rel="icon" href="LOGO.png" type="image/jpeg">
+    <style>
+
+        html {
+          scroll-behavior: smooth;
+         }
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    height: 100%;
+    overscroll-behavior: none;
+}
+
+body {
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    overflow-y: auto;
+    width: 100%;
+    max-width: 100vw; /* Prevent body from exceeding viewport width */
+    height: 100%;
+    overscroll-behavior: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding-top: 110px;
+}
+
+
+
+
+       /* Banner */
+      .banner {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+        .logo {
+            margin: 0;
+            font-size: 1.6em;
+        }
+
+        .banner h1 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .banner h1 img {
+            width: 70px;
+            height: 70px;
+        }
+
+        .banner h1 small {
+            display: block;
+            font-size: 0.4em;
+            font-weight: normal;
+        }
+
+        .nav {
+            display: flex;
+        }
+
+        .nav a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 1.1em;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .nav a:hover {
+            color: #ff7300;
+            text-decoration: underline;
+        }
+
+        /* Mobile menu toggle button */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .hero-banner {
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            transition: background-image 1s ease-in-out;
+            width: 100%;
+        }
+        .hero-content h1 {
+            font-size: 3rem;
+            margin: 0;
+            border-right: 2px solid white;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .hero-content p {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+
+
+
+       
+       /* Company Info */
+.company-info {
+    padding: 40px 20px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+#img {
+    flex-shrink: 0;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 0px;
+}
+
+.company-info h1 {
+    font-size: 2em;
+    color: #02a238;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.company-info h2 {
+    font-size: 1.8em;
+    color: #0a0a23;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    clear: both;
+}
+
+.text-content {
+  animation: slideInFromRight 1s ease-out;
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  
+}
+
+
+.company-info p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #878484;
+}
+
+hr {
+    margin: 40px 0;
+    border: none;
+    border-top: 1px solid #ddd;
+    width: 100%;
+    clear: both;
+}
+        /* Image Grid */
+        .image-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            clear: both;
+            background-color: #ffffff83;
+            flex-wrap: wrap;
+        }
+
+        .image-item {
+            text-align: center;
+            max-width: 250px;
+        }
+
+        .image-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 0px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .image-item img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .image-item p {
+            margin-top: 10px;
+            font-size: 0.95em;
+            color: #333;
+        }
+
+        /* New Hero Section with Typewriter Effect */
+        .engineering-hero {
+            width: 100%;
+            height: 60vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                              url('https://i.pinimg.com/736x/86/f5/ee/86f5ee8b7f5c36b0c4c3e9cbe32083e7.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: relative;
+            padding-left: 5%;
+            padding-right: 5%;
+        }
+
+        .engineering-content {
+            text-align: left;
+            color: white;
+            max-width: 700px;
+            padding: 20px;
+        }
+
+        .engineering-heading {
+            font-size: clamp(1.8rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 30px;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.3;
+        }
+
+        .engineering-subheading {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 600;
+            font-family: 'Arial', sans-serif;
+            letter-spacing: 1px;
+            min-height: 80px;
+        }
+
+        .typewriter {
+            display: inline-block;
+            border-bottom: 4px solid white;
+            padding-bottom: 5px;
+            border-right: 3px solid white;
+            padding-right: 5px;
+            animation: blink 0.7s step-end infinite;
+        }
+
+        @keyframes blink {
+            50% {
+                border-color: transparent;
+            }
+        }
+
+        .typewriter.done {
+            border-right: none;
+            animation: none;
+        }
+
+         /* Social responsibilities */
+           
+        .card-container {
+    display: flex;
+    gap: 40px;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0px;
+    background-color: #ff3700;
+    flex-wrap: wrap;
+}
+
+.info-card {
+    background: white;
+    padding: 50px;
+    border-radius: 0px;
+    flex: 1;
+    min-width: 280px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.492);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+}
+
+.card-title {
+    margin-top: 0;
+    color: #ff3700;
+    font-size: 2rem;
+}
+
+.card-text {
+    color: #000000;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.read-more-hint {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 25px;
+    background: linear-gradient(135deg, #ff3700 0%, #ff6a00 100%);
+    color: white;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 50px;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    animation: slideIn 0.4s ease;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #ff3700;
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.modal-close:hover {
+    transform: rotate(90deg);
+    color: #ff0000;
+}
+
+.modal-content h2 {
+    color: #ff3700;
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #ff3700;
+    padding-bottom: 15px;
+}
+
+.modal-content h3 {
+    color: #333;
+    font-size: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    color: #555;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+}
+
+.modal-content ul {
+    list-style-position: inside;
+    margin: 15px 0;
+    padding-left: 20px;
+}
+
+.modal-content li {
+    color: #555;
+    line-height: 1.8;
+    font-size: 1.05rem;
+    margin-bottom: 12px;
+}
+
+
+        /* Services Section */
+        .services-section {
+            background: linear-gradient(135deg, rgb(92, 93, 94) 0%, #f9f6fd 100%);
+            padding: 80px 20px;
+            width: 100%;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .services-section h1 {
+            text-align: center;
+            color: rgb(255, 255, 255);
+            margin-bottom: 50px;
+            font-size: 2.5rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+            width: 100%;
+        }
+
+        .service-box {
+            background: rgba(0, 0, 0, 0.532);
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .service-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .service-content {
+            padding: 30px;
+        }
+
+        .service-box.expanded {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            z-index: 1000;
+            cursor: default;
+        }
+
+        .service-box.expanded:hover {
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 999;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .service-box.expanded .service-image {
+            height: 300px;
+        }
+
+        .service-title {
+            font-size: 1.5rem;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        .service-box.expanded .service-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .service-preview {
+            color: #ffffff;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .service-description {
+            color: #ffffff;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .service-full {
+            display: none;
+            color: #ffffff;
+            line-height: 1.8;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #f0f0f0;
+            font-size: 1.05rem;
+        }
+
+        .service-full p {
+            margin-bottom: 15px;
+        }
+
+        .service-box.expanded .service-preview {
+            font-size: 1.1rem;
+            color: #ffffff;
+        }
+
+        .service-box.expanded .service-full {
+            display: block;
+        }
+
+        .close-btn {
+            display: none;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            background: #f39f9f;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            line-height: 1;
+            z-index: 10;
+        }
+
+        .close-btn:hover {
+            background: #ff001e;
+            transform: rotate(90deg);
+        }
+
+        .service-box.expanded .close-btn {
+            display: block;
+        }
+
+        .expand-hint {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #52634f 0%, #1eff00 100%);
+            color: white;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            pointer-events: none;
+        }
+
+        .service-box.expanded .expand-hint {
+            display: none;
+        }
+
+        .service-box.expanded .service-description {
+            display: none;
+        }
+
+        
+        /* Team Leaders Section */
+        .leaders {
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%);
+            width: 100%;
+        }
+
+        .leaders-heading {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #0a0a23;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .leaders-subheading {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 50px;
+            font-weight: 400;
+        }
+
+        .leader-image-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 25px;
+            border: 4px solid #db5a04;
+        }
+
+        .leader-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 55, 0, 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-item:hover .leader-overlay {
+            opacity: 1;
+        }
+
+        .image-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .view-profile {
+            color: rgba(255, 255, 255, 0);
+            font-weight: 600;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .leader-name {
+            font-size: 1.4rem;
+            color: #0a0a23;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .leader-title {
+            font-size: 0.95rem;
+            color: #ff3700;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+
+
+
+
+        
+
+        /* Footer */
+       footer {
+            background-color: #000000;
+            color: #ecf0f1;
+            padding: 60px 20px 20px;
+            position: relative;
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #3498db;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ff3700;
+        }
+
+        .email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: #ff3700;
+            color: white !important;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .email-link:hover {
+            background-color: #2980b9;
+        }
+
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+           
+            border-radius: 50%;
+            color: #ecf0f1;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+      
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            background-color: #09ff00;
+            transform: translateY(-5px);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        .icon-location::before {
+            content: "📍 ";
+        }
+
+        .icon-email::before {
+            content: "✉️ ";
+        }
+
+        .icon-phone::before {
+            content: "📞 ";
+        }
+
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+
+            .banner {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+            }
+
+            .banner h1 {
+                font-size: 1.2em;
+            }
+
+            .banner h1 img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #000000;
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            }
+
+            .nav.active {
+                display: flex;
+            }
+
+            .nav a {
+                margin: 10px 0;
+                font-size: 1em;
+                padding: 10px;
+                border-bottom: 1px solid #333;
+            }
+
+            .hero-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .company-info {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            #img {
+                max-width: 100%;
+            }
+
+            .company-info h1 {
+                font-size: 1.5em;
+            }
+
+            .company-info h2 {
+                font-size: 1.3em;
+            }
+
+            .card-container {
+                flex-direction: column;
+                padding: 20px;
+            }
+            
+            .info-card {
+                padding: 30px;
+                min-width: 100%;
+            }
+
+            .modal-content {
+                padding: 30px;
+                margin: 20px;
+                max-width: 90%;
+            }
+
+            .modal-content h2 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .image-grid {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .image-item {
+                max-width: 100%;
+            }
+        }
+
+        /* Additional fixes for preventing horizontal scroll */
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .services-section p {
+            max-width: 100%;
+        }
+    </style>
+
+    
+</head>
+<body>
+    <header class="banner">
+        <h1>
+            <img src="LOGO.png" alt="logo">
+            <div>
+                Cerat<br>
+                <small>WHERE INNOVATION MEET'S PERCISION</small>
+            </div>
+        </h1>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="nav" id="navMenu">
+            <a href="home.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="ourservices.html">Services</a>
+            <a href="store1.html">Supplies</a>
+            <a href="contactUS.html">Contact Us</a>
+        </nav>
+    </header>
+
+
+
+     <section class="hero-banner" id="hero-banner">
+        <div class="hero-content">
+            <h1 id="hero-title"></h1>
+            <p id="hero-subtitle">Discover amazing things and explore the possibilities.</p>
+           
+        </div>
+    </section>
+
+
+
+
+
+    <div class="company-info">
+    <img src="worker.png" alt="worker" id="img">
+
+    <div class="text-content">
+       
+        <h1>Company Overview</h1>
+        <p><strong>At CERAT PTY Ltd</strong>, we are committed to 
+         powering progress through precision, 
+         innovation, and reliability. As a trusted 
+         provider of mining and engineering 
+         services, we specialize in delivering 
+         comprehensive, end-to-end solutions 
+         tailored to the unique demands of the 
+         resource and infrastructure sectors.
+         Our expertise spans across exploration 
+         support, project development, 
+         operational efficiency, and engineering 
+         excellence all aimed at ensuring 
+         sustainable, cost-effective, and results
+         mining operations, delivering technical 
+         engineering support, or managing 
+         complex projects, we combine industry
+         leading knowledge with practical 
+         experience to meet and exceed client 
+         expectations.
+         Driven by a commitment to safety, 
+         sustainability, and performance, CERAT 
+         Pty Ltd is more than just a service provide 
+         we are a strategic partner dedicated to 
+         solving challenges and building lasting  
+         value in every project we undertake</p>
+        
+        <br>
+        <hr>
+    </div>
+</div>
+
+
+
+ 
+    <div class="services-section">
+        <div class="overlay"></div>
+        <div class="services-container">
+            <h1>Our Core Services</h1>
+            <p style="color: white; text-align: center; font-size: 19px; max-width: 100%; padding: 0 10px;">Cerat Supplies end-to-end engineering and construction capabilities
+                across dedicated, expertise-driven teams—assuring effective, 
+                regulatory-compliant, and financially-sound project achievements
+                 that fulfill market standards and client objectives.
+</p>
+
+           <br>
+           <br>
+            
+            <div class="services-grid">
+                <div class="service-box">
+                    <button class="close-btn">×</button>
+                    <div class="service-image">
+                        <img src="civil.jpg" alt="Service 1">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Civil Engineering</h3>
+                        <p class="service-preview">Expert civil engineering solutions for infrastructure development across Africa.</p>
+                        <div class="service-full">
+                            <p>Our civil engineering services encompass comprehensive planning, design, and construction management for roads, bridges, and urban infrastructure projects. We bring decades of experience in delivering projects that stand the test of time.</p>
+                            <p>We specialize in sustainable infrastructure development that considers environmental impact, community needs, and long-term maintenance. Our team uses cutting-edge technology and proven methodologies to ensure every project meets the highest standards.</p>
+                            <p>From initial feasibility studies to final commissioning, we provide end-to-end support that ensures your infrastructure projects are completed on time, within budget, and to specification.</p>
+                        </div>
+                        <p class="service-description">Building the foundations for Africa's future with roads, bridges, and infrastructure that connects communities.</p>
+                        <span class="expand-hint">Click to learn more</span>
+                    </div>
+                </div>
+
+                <div class="service-box">
+                    <button class="close-btn">×</button>
+                    <div class="service-image">
+                        <img src="structural.jpg" alt="Service 3">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Structural Engineering</h3>
+                        <p class="service-preview">Innovative structural design and analysis for safe, durable buildings.</p>
+                        <div class="service-full">
+                            <p>Our structural engineering team delivers comprehensive solutions for buildings of all sizes and complexities. We combine advanced analysis techniques with practical construction knowledge to create structures that are safe, efficient, and cost-effective.</p>
+                            <p>From residential homes to high-rise commercial buildings and industrial facilities, we provide detailed structural design, calculations, and construction documentation. Our engineers stay current with building codes and industry best practices.</p>
+                            <p>We also offer structural assessment and retrofitting services for existing buildings, ensuring they meet current safety standards and can accommodate future modifications or expansions.</p>
+                        </div>
+                        <p class="service-description">Designing robust frameworks that ensure safety and longevity for all types of structures.</p>
+                        <span class="expand-hint">Click to learn more</span>
+                    </div>
+                </div>
+
+                <div class="service-box">
+                    <button class="close-btn">×</button>
+                    <div class="service-image">
+                        <img src="electrical service.jpg" alt="Service 1">
+                    </div>
+                    <div class="service-content">
+                        <h3 class="service-title">Electrical Engineering</h3>
+                        <p class="service-preview">Advanced electrical systems design and installation for all project types.</p>
+                        <div class="service-full">
+                            <p>Our electrical engineering division provides comprehensive solutions including power distribution, lighting design, backup systems, and renewable energy integration. We ensure all installations meet safety standards and regulatory requirements.</p>
+                            <p>From small residential projects to large industrial facilities, we have the expertise to design and install electrical systems that are reliable, efficient, and scalable. Our team stays current with the latest technologies and best practices in electrical engineering.</p>
+                            <p>We also offer preventive maintenance programs, energy audits, and emergency response services to keep your electrical systems running smoothly and minimize downtime while optimizing energy consumption.</p>
+                        </div>
+                        <p class="service-description">Powering progress with reliable electrical systems and sustainable energy solutions.</p>
+                        <span class="expand-hint">Click to learn more</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- New Engineering Hero Section -->
+    <section class="engineering-hero">
+        <div class="engineering-content">
+            <h1 class="engineering-heading">We Provide Engineering Services That Shape A Better Tomorrow</h1>
+            <h2 class="engineering-subheading">
+                <span id="typewriter" class="typewriter"></span>
+            </h2>
+        </div>
+    </section>
+
+
+<br>
+<br>
+<br>
+
+
+
+<div class="card-container">
+        <div class="info-card" onclick="openModal('socialModal')">
+            <h2 class="card-title">Social Responsibilities</h2>
+            <p class="card-text">We are committed to making a positive impact on our community through ethical practices, employee welfare, environmental sustainability, and community development programs.</p>
+            <span class="read-more-hint">Click to learn more</span>
+        </div>
+
+        <div class="info-card" onclick="openModal('governanceModal')">
+            <h2 class="card-title">Governance & Transparency</h2>
+            <p class="card-text">We maintain the highest standards of corporate governance with independent oversight, regular reporting, ethical conduct policies, and strong stakeholder engagement.</p>
+            <span class="read-more-hint">Click to learn more</span>
+        </div>
+    </div>
+
+    <!-- Social Responsibilities Modal -->
+    <div id="socialModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('socialModal')">×</button>
+            <h2>Social Responsibilities</h2>
+            
+            <h3>Our Commitment to Community</h3>
+            <p>At CERAT PTY Ltd, we believe that successful business operations go hand-in-hand with social responsibility. We are dedicated to creating positive impacts that extend beyond our immediate business interests, focusing on the wellbeing of our employees, communities, and the environment.</p>
+            
+            <h3>Employee Welfare & Development</h3>
+            <p>Our employees are our most valuable asset. We provide:</p>
+            <ul>
+                <li>Comprehensive health and safety programs that exceed industry standards</li>
+                <li>Continuous professional development and training opportunities</li>
+                <li>Fair compensation packages and benefits</li>
+                <li>Equal opportunity employment and diversity initiatives</li>
+                <li>Work-life balance programs and employee support services</li>
+            </ul>
+            
+            <h3>Community Development</h3>
+            <p>We actively invest in the communities where we operate through:</p>
+            <ul>
+                <li>Local employment and skills development programs</li>
+                <li>Support for education infrastructure and scholarships</li>
+                <li>Healthcare initiatives and wellness programs</li>
+                <li>Small business development and supplier diversity programs</li>
+                <li>Cultural preservation and community engagement projects</li>
+            </ul>
+            
+            <h3>Environmental Sustainability</h3>
+            <p>Our commitment to environmental stewardship includes:</p>
+            <ul>
+                <li>Implementing sustainable mining and engineering practices</li>
+                <li>Minimizing environmental impact through innovative technologies</li>
+                <li>Comprehensive waste management and recycling programs</li>
+                <li>Water conservation and responsible resource management</li>
+                <li>Rehabilitation of mining sites and ecological restoration</li>
+            </ul>
+            
+            <h3>Ethical Business Practices</h3>
+            <p>We maintain the highest ethical standards in all our operations, ensuring transparency, accountability, and integrity in every business decision. Our code of conduct guides our relationships with employees, clients, suppliers, and communities.</p>
+        </div>
+    </div>
+
+    <!-- Governance & Transparency Modal -->
+    <div id="governanceModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal('governanceModal')">×</button>
+            <h2>Governance & Transparency</h2>
+            
+            <h3>Corporate Governance Framework</h3>
+            <p>CERAT PTY Ltd operates under a robust corporate governance framework designed to ensure accountability, fairness, and transparency in all our business dealings. Our governance structure protects stakeholder interests while driving sustainable business growth.</p>
+            
+            <h3>Board Oversight & Leadership</h3>
+            <p>Our governance structure includes:</p>
+            <ul>
+                <li>Independent board oversight with diverse expertise</li>
+                <li>Clear separation of board and management responsibilities</li>
+                <li>Regular board meetings and strategic review sessions</li>
+                <li>Specialized committees for audit, risk, and compliance</li>
+                <li>Executive accountability and performance evaluation systems</li>
+            </ul>
+            
+            <h3>Transparency & Reporting</h3>
+            <p>We maintain transparency through:</p>
+            <ul>
+                <li>Regular financial reporting and audits by independent auditors</li>
+                <li>Public disclosure of operational performance and impacts</li>
+                <li>Open communication channels with all stakeholders</li>
+                <li>Annual sustainability and social responsibility reports</li>
+                <li>Compliance with all regulatory reporting requirements</li>
+            </ul>
+            
+            <h3>Risk Management</h3>
+            <p>Our comprehensive risk management framework addresses:</p>
+            <ul>
+                <li>Operational, financial, and strategic risks</li>
+                <li>Health, safety, and environmental risks</li>
+                <li>Regulatory compliance and legal risks</li>
+                <li>Cybersecurity and data protection</li>
+                <li>Supply chain and market risks</li>
+            </ul>
+            
+            <h3>Ethics & Compliance</h3>
+            <p>We enforce strict ethical standards through:</p>
+            <ul>
+                <li>Comprehensive code of conduct for all employees and contractors</li>
+                <li>Anti-corruption and anti-bribery policies</li>
+                <li>Whistleblower protection programs</li>
+                <li>Regular ethics training and awareness programs</li>
+                <li>Zero-tolerance policy for violations of ethical standards</li>
+            </ul>
+            
+            <h3>Stakeholder Engagement</h3>
+            <p>We actively engage with our stakeholders including employees, clients, suppliers, communities, and regulatory bodies to ensure their voices are heard and their interests are considered in our decision-making processes. This collaborative approach strengthens trust and creates shared value for all parties.</p>
+        </div>
+    </div>
+
+    <hr>
+
+
+<br>
+
+
+
+
+        </div>
+    </div>
+
+
+
+
+    <!-- Footer -->
+        <footer>
+           <div class="footer-container">
+            <!-- Contact Information -->
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p class="icon-location">
+                    2 Roos Street <br>
+                    Fourways Golfpark<br>
+                    Augusta House Sandton<br>
+                   
+                </p>
+                <p class="icon-phone">+27 79 028 6464</p>
+                <a href="mailto:info@yourcompany.com" class="email-link icon-email">
+                    info@Cerat.com
+                </a>
+            </div>
+            <!-- Quick Links -->
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="aboutus.html">About Us</a>
+                <a href="ourservices.html">Services</a>
+                <a href="store1.html">Products</a>
+                <a href="contactUS.html">Contact</a>
+                <a href="#privacy">Privacy Policy</a>
+            </div>
+            <!-- Social Media -->
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+               <div class="social-links">
+                   
+                    <a href="https://www.instagram.com/ceratengineering_ptyltd?igsh=MXhrdnJ5Zzk4bDhvcA%3D%3D" target="cerat pty ltd" title="Twitter">
+                        <span>Instagram</span>
+                    </a>
+                    <br>
+                    <a href="https://x.com/ceratengin74921?s=21" target="cerat pty ltd" title="Instagram">
+                        <span>Twitter</span>
+                    </a>
+                    <br>
+
+                    <a href="http://www.linkedin.com/in/cerat-engineering-pty-ltd-87b90b3aa" target="cerat pty ltd" title="LinkedIn">
+                        <span>LinkedIn</span></a>
+                    <br>
+
+                    <a href="https://www.tiktok.com/@cerat_engineering?_r=1&_t=ZS-93cirtzsGDk" target="cerat pty ltd" title="LinkedIn">
+                        <span>TikTok</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <p style="text-align: center; font-size: 12px; color: #888; margin-top: 20px;">
+    Developed by <a href="https://www.instagram.com/phuluso_nemavhola/" style="color: #666; text-decoration: underline;">PHULUSO</a>
+</p>
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>&copy; 2026 Cerat PTY(LTD). All rights reserved.</p>
+        </div>
+        </footer>
+    <script>
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link (optional)
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Service boxes functionality
+        const boxes = document.querySelectorAll('.service-box');
+        const overlay = document.querySelector('.overlay');
+        
+        boxes.forEach(box => {
+            const closeBtn = box.querySelector('.close-btn');
+            
+            box.addEventListener('click', (e) => {
+                if (!box.classList.contains('expanded') && !e.target.classList.contains('close-btn')) {
+                    box.classList.add('expanded');
+                    overlay.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            });
+            
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                box.classList.remove('expanded');
+                overlay.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+        
+        overlay.addEventListener('click', () => {
+            boxes.forEach(box => box.classList.remove('expanded'));
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        });
+
+        // Modal functionality
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+
+         // Array of background images
+        const images = [
+           
+            'coal.jpeg',
+            'hero2.jpeg',
+            'hero3.jpg',
+        ];
+
+        // Array of titles for typing effect
+        const titles = [
+            'Welcome To CERAT (pty)ltd',
+            'Innovation-Driven',
+            'Results-Oriented',
+        ];
+
+        // Array of subtitles
+        const subtitles = [
+            'COMMITTED TO PROVIDING MINING EXPERTISE.',
+            'leading and professional Mechanical, Electrical and BuildingServices business since in 2017,',
+            'Embark on a journey of endless opportunities.'
+        ];
+
+        let imageIndex = 0;
+        let titleIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 100;
+        const deleteSpeed = 50;
+        const pauseTime = 2000;
+
+        const heroBanner = document.getElementById('hero-banner');
+        const heroTitle = document.getElementById('hero-title');
+        const heroSubtitle = document.getElementById('hero-subtitle');
+
+        // Function to change background image every 5 seconds
+        function changeImage() {
+            heroBanner.style.backgroundImage = `url(${images[imageIndex]})`;
+            imageIndex = (imageIndex + 1) % images.length;
+        }
+
+        // Function for typewriter effect
+        function typeWriter() {
+            const currentTitle = titles[titleIndex];
+            if (!isDeleting) {
+                heroTitle.textContent = currentTitle.substring(0, charIndex + 1);
+                charIndex++;
+                if (charIndex === currentTitle.length) {
+                    isDeleting = true;
+                    setTimeout(typeWriter, pauseTime);
+                    return;
+                }
+            } else {
+                heroTitle.textContent = currentTitle.substring(0, charIndex - 1);
+                charIndex--;
+                if (charIndex === 0) {
+                    isDeleting = false;
+                    titleIndex = (titleIndex + 1) % titles.length;
+                    heroSubtitle.textContent = subtitles[titleIndex];
+                    setTimeout(typeWriter, 500);
+                    return;
+                }
+            }
+            setTimeout(typeWriter, isDeleting ? deleteSpeed : typingSpeed);
+        }
+
+        // Initialize
+        changeImage();
+        typeWriter();
+
+        // Set intervals
+        setInterval(changeImage, 5000);
+
+
+         // New typewriter effect for engineering section
+        const phrases = [
+            "Built With Experience",
+            "Driven By Purpose"
+        ];
+        
+        let phraseIndex = 0;
+        let charIdx = 0;
+        let isDel = false;
+        const typewriterEl = document.getElementById('typewriter');
+        const typeSpeed = 100;
+        const delSpeed = 50;
+        const pauseBetween = 2000;
+        const pauseBefore = 1500;
+
+        function type() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (!isDel && charIdx <= currentPhrase.length) {
+                typewriterEl.textContent = currentPhrase.substring(0, charIdx);
+                charIdx++;
+                
+                if (charIdx > currentPhrase.length) {
+                    setTimeout(() => {
+                        isDel = true;
+                        type();
+                    }, pauseBefore);
+                    return;
+                }
+                
+                setTimeout(type, typeSpeed);
+            } else if (isDel && charIdx >= 0) {
+                typewriterEl.textContent = currentPhrase.substring(0, charIdx);
+                charIdx--;
+                
+                if (charIdx < 0) {
+                    isDel = false;
+                    phraseIndex = (phraseIndex + 1) % phrases.length; // Loop back to start
+                    charIdx = 0;
+                    setTimeout(type, pauseBetween);
+                    return;
+                }
+                
+                setTimeout(type, delSpeed);
+            }
+        }
+
+        setTimeout(type, 500);
+    </script>
+</body>
+</html>

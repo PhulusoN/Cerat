@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CERAT - Services</title>
+    <link rel="icon" href="LOGO.png" type="image/jpeg">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: hidden;
+            height: 100%;
+            overscroll-behavior: none;
+        }
+
+        body {
+            overflow-x: hidden;
+            overflow-y: auto;
+            width: 100%;
+            max-width: 100vw;
+            height: 100%;
+            overscroll-behavior: none;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding-top: 110px;
+        }
+
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
+
+       .banner {
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .logo {
+            margin: 0;
+            font-size: 1.6em;
+        }
+
+        .banner h1 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .banner h1 img {
+            width: 70px;
+            height: 70px;
+        }
+
+        .banner h1 small {
+            display: block;
+            font-size: 0.4em;
+            font-weight: normal;
+        }
+
+        .nav {
+            display: flex;
+        }
+
+        .nav a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 1.1em;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .nav a:hover {
+            color: #ff7300;
+            text-decoration: underline;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .hero-banner {
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            transition: background-image 1s ease-in-out;
+            width: 100%;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            margin: 0;
+            border-right: 2px solid rgba(255, 255, 255, 0);
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+             url("https://i.pinimg.com/736x/0a/6b/d9/0a6bd9cb99fadf4a441d7120f3c3871a.jpg");
+            background-position: center;
+            background-attachment: fixed;
+            background-size: cover;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            width: 100%;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-content {
+            color: white;
+        }
+
+        .hero-content h1 span {
+            color: #ff3700;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .services {
+            background-color: #b5b4b4b6;
+            padding: 5rem 2rem;
+            width: 100%;
+        }
+
+        .services-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .services-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .services-header h2 {
+            font-size: 2.5rem;
+            color: #ff3700;
+            margin-bottom: 1rem;
+        }
+
+        .services-header p {
+            font-size: 2.25rem;
+            color: #ffffff;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            border-radius: 0px;
+            cursor: pointer;
+        }
+
+        .service-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover h3 {
+            color: #ffffff;
+            transform: translateY(-5px);
+        }
+
+        .service-btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: fit-content;
+        }
+
+        .service-btn:hover {
+            background-color: #ff3700;
+            transform: translateX(5px);
+        }
+
+        .service-detail {
+            padding-top: 100px;
+            min-height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        .detail-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            width: 100%;
+        }
+
+        .detail-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .detail-header h1 {
+            font-size: 3rem;
+            color: #02a238;
+            margin-bottom: 1rem;
+        }
+
+        .detail-header p {
+            font-size: 1.3rem;
+            color: #666;
+        }
+
+        .detail-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .detail-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+        }
+
+        .detail-content h2 {
+            color: #ff3700;
+            font-size: 2rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .detail-content h3 {
+            color: #02a238;
+            font-size: 1.5rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+
+        .detail-content p {
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .detail-content ul {
+            margin: 1rem 0 1rem 2rem;
+            line-height: 2;
+        }
+
+        .detail-content ul li {
+            color: #555;
+            font-size: 1.05rem;
+        }
+
+        .back-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #02a238;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #028a2f;
+            transform: translateY(-2px);
+        }
+
+         footer {
+            background-color: #000000;
+            color: #ecf0f1;
+            padding: 60px 20px 20px;
+            position: relative;
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #3498db;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ff3700;
+        }
+
+        .email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: #ff3700;
+            color: white !important;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .email-link:hover {
+            background-color: #2980b9;
+        }
+
+       
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+          
+            border-radius: 50%;
+            color: #ecf0f1;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            background-color: #09ff00;
+            transform: translateY(-5px);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        .icon-location::before {
+            content: " ";
+        }
+
+        .icon-email::before {
+            content: " ";
+        }
+
+        .icon-phone::before {
+            content: " ";
+        }
+
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+
+            .banner {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+            }
+
+            .banner h1 {
+                font-size: 1.2em;
+            }
+
+            .banner h1 img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #000000;
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            }
+
+            .nav.active {
+                display: flex;
+            }
+
+            .nav a {
+                margin: 10px 0;
+                font-size: 1em;
+                padding: 10px;
+                border-bottom: 1px solid #333;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .services-header h2 {
+                font-size: 2rem;
+            }
+
+            .services-header p {
+                font-size: 1.5rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="banner">
+        <h1>
+            <img src="LOGO.png" alt="logo">
+            <div>
+                Cerat<br>
+                <small>WHERE INNOVATION MEET'S PERCISION</small>
+            </div>
+        </h1>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="nav" id="navMenu">
+            <a href="home.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="ourservices.html">Services</a>
+            <a href="store1.html">Supplies</a>
+            <a href="contactUS.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Our <span>services</span></h1>
+                    <p>We provide innovative solutions to help your business grow and succeed in the digital world. Let us transform your vision into reality.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="services">
+            <div class="services-container">
+                <div class="services-header">
+                    <h2>Our Services</h2>
+                    <p>Discover what we can do for you</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <img src="https://i.pinimg.com/736x/b9/0e/08/b90e0852124129b8fcd5f49edd22a2d3.jpg" alt="Electrical Services" class="service-card-image">
+                        <div class="service-overlay">
+                            <h3>Electrical Services</h3>
+                           <a href="" onclick="showPage('electrical'); return false;" class="service-btn">View Details →</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="https://i.pinimg.com/736x/76/f6/69/76f669a6bb92674901dd6b3305dfee2d.jpg" alt="Mechanical Services" class="service-card-image">
+                        <div class="service-overlay">
+                            <h3>Mechanical Services</h3>
+                            <a href="mecahnical.html" class="service-btn">View Details →</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="https://i.pinimg.com/736x/57/75/97/577597b11b2c8b4947df13ecc2263589.jpg" alt="Maintenance & Energy Services" class="service-card-image">
+                        <div class="service-overlay">
+                            <h3>Maintenance & Energy Services</h3>
+                            <a href="maintenance&energy.html" class="service-btn">View Details →</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="https://i.pinimg.com/736x/1a/0a/b4/1a0ab4e00a136fbdbf475d4bc3f0b7aa.jpg" alt="Building Services" class="service-card-image">
+                        <div class="service-overlay">
+                            <h3>Building Services</h3>
+                            <a href="building.html" class="service-btn">View Details →</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="https://i.pinimg.com/1200x/3c/bb/f7/3cbbf728dda82676d5cbea5fc952dbcd.jpg" alt="Design Development" class="service-card-image">
+                        <div class="service-overlay">
+                            <h3>Design Development</h3>
+                            <a href="designDevelopment.html" class="service-btn">View Details →</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="https://i.pinimg.com/1200x/f5/7f/cb/f57fcb397ff74d081ca95a2e039c419e.jpg" alt="Supply & Procurement" class="service-card-image">
+                        <div class="service-overlay">
+                            <h3>Supply & Procurement</h3>
+                            <a href="Supply&procurment.html" class="service-btn">View Details →</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="https://i.pinimg.com/1200x/46/78/fa/4678fa5400bee4af5937d9ec05ecb627.jpg" alt="Plant Optimization" class="service-card-image">
+                        <div class="service-overlay">
+                            <h3>Plant Optimization & Management</h3>
+                            <a href="plant.html" class="service-btn">View Details →</a>
+                        </div>
+                    </div>
+
+                    <div class="service-card">
+                        <img src="https://i.pinimg.com/736x/0d/23/11/0d23118accb8c768c6af7a3158eeea4d.jpg" alt="Consulting & Project Management" class="service-card-image">
+                        <div class="service-overlay">
+                            <h3>Consulting & Project Management</h3>
+                            <a href="consulting&projectManagement.html" class="service-btn">View Details →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="electrical" class="page">
+        <section class="service-detail">
+            <div class="detail-container">
+                <div class="detail-header">
+                    <h1>Electrical Services</h1>
+                    <p>Powering Your Projects with Expert Electrical Solutions</p>
+                </div>
+                <div class="detail-content">
+                    <img src="https://i.pinimg.com/736x/b9/0e/08/b90e0852124129b8fcd5f49edd22a2d3.jpg" alt="Electrical Services" class="detail-image">
+                    
+                    <h2>Comprehensive Electrical Engineering Solutions</h2>
+                    <p>At CERAT, we deliver world-class electrical engineering services for commercial, industrial, and residential projects. Our team of certified electricians and engineers ensures that every installation meets the highest safety standards and regulatory requirements.</p>
+
+                    <h3>Our Electrical Services Include:</h3>
+                    <ul>
+                        <li>High Voltage (HV) and Low Voltage (LV) Installations</li>
+                        <li>Power Distribution Systems Design and Installation</li>
+                        <li>Electrical Load Calculations and Planning</li>
+                        <li>Lightning Protection Systems</li>
+                        <li>Emergency Power and Generator Systems</li>
+                        <li>Lighting Design and Energy-Efficient Solutions</li>
+                        <li>Electrical Testing and Commissioning</li>
+                        <li>Fault Finding and Troubleshooting</li>
+                        <li>Compliance and Safety Audits</li>
+                    </ul>
+
+                    <h3>Why Choose Our Electrical Services?</h3>
+                    <p>With years of experience in the industry, CERAT has established itself as a trusted partner for electrical solutions. We combine technical expertise with innovative approaches to deliver cost-effective, reliable, and sustainable electrical systems.</p>
+                    
+                    <p>Our commitment to quality, safety, and client satisfaction ensures that your electrical infrastructure operates efficiently and safely for years to come.</p>
+
+                    <a href="#" onclick="showPage('home'); return false;" class="back-btn">← Back to Services</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="mechanical" class="page">
+        <section class="service-detail">
+            <div class="detail-container">
+                <div class="detail-header">
+                    <h1>Mechanical Services</h1>
+                    <p>Engineering Excellence in Mechanical Systems</p>
+                </div>
+                <div class="detail-content">
+                    <img src="https://i.pinimg.com/736x/76/f6/69/76f669a6bb92674901dd6b3305dfee2d.jpg" alt="Mechanical Services" class="detail-image">
+                    
+                    <h2>Advanced Mechanical Engineering Solutions</h2>
+                    <p>CERAT provides comprehensive mechanical engineering services designed to optimize performance, efficiency, and reliability across all types of facilities. From HVAC systems to industrial machinery, we deliver solutions that meet your specific needs.</p>
+
+                    <h3>Our Mechanical Services Include:</h3>
+                    <ul>
+                        <li>HVAC Design, Installation, and Optimization</li>
+                        <li>Air Conditioning and Ventilation Systems</li>
+                        <li>Plumbing and Sanitation Systems</li>
+                        <li>Fire Protection and Suppression Systems</li>
+                        <li>Industrial Piping and Process Systems</li>
+                        <li>Refrigeration Systems</li>
+                        <li>Boiler and Heating Systems</li>
+                        <li>Mechanical Equipment Installation</li>
+                        <li>System Balancing and Commissioning</li>
+                    </ul>
+
+                    <h3>Industry-Leading Standards</h3>
+                    <p>Our mechanical engineers utilize the latest technologies and methodologies to ensure that your systems operate at peak performance. We focus on energy efficiency, sustainability, and long-term reliability in all our mechanical installations.</p>
+                    
+                    <p>Whether you need a complete mechanical system for a new building or upgrades to existing infrastructure, CERAT has the expertise to deliver exceptional results.</p>
+
+                    <a href="#" onclick="showPage('home'); return false;" class="back-btn">← Back to Services</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="maintenance" class="page">
+        <section class="service-detail">
+            <div class="detail-container">
+                <div class="detail-header">
+                    <h1>Maintenance & Energy Services</h1>
+                    <p>Sustaining Performance, Maximizing Efficiency</p>
+                </div>
+                <div class="detail-content">
+                    <img src="https://i.pinimg.com/1200x/7a/64/21/7a64219d91f89d726fa456cf41e0495e.jpg" alt="Maintenance & Energy Services" class="detail-image">
+                    
+                    <h2>Proactive Maintenance and Energy Management</h2>
+                    <p>At CERAT, we understand that proper maintenance and energy management are crucial for minimizing downtime, reducing operational costs, and extending the lifespan of your equipment. Our comprehensive services keep your facilities running smoothly while optimizing energy consumption.</p>
+
+                    <h3>Maintenance Services:</h3>
+                    <ul>
+                        <li>Preventive Maintenance Programs</li>
+                        <li>Planned Maintenance Schedules</li>
+                        <li>Equipment Servicing and Repairs</li>
+                        <li>Emergency Breakdown Support</li>
+                        <li>Condition Monitoring and Diagnostics</li>
+                        <li>Predictive Maintenance Solutions</li>
+                        <li>Facility Management Services</li>
+                    </ul>
+
+                    <h3>Energy Services:</h3>
+                    <ul>
+                        <li>Energy Audits and Assessments</li>
+                        <li>Energy Efficiency Improvements</li>
+                        <li>Renewable Energy Solutions (Solar, Wind)</li>
+                        <li>Power Factor Correction</li>
+                        <li>LED Lighting Retrofits</li>
+                        <li>Building Management Systems (BMS)</li>
+                        <li>Carbon Footprint Reduction Strategies</li>
+                        <li>Utility Cost Optimization</li>
+                    </ul>
+
+                    <h3>Sustainable and Cost-Effective Solutions</h3>
+                    <p>Our maintenance and energy services are designed to reduce your environmental impact while improving your bottom line. We help you achieve sustainability goals through smart energy management and proactive maintenance strategies.</p>
+
+                    <a href="#" onclick="showPage('home'); return false;" class="back-btn">← Back to Services</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="building" class="page">
+        <section class="service-detail">
+            <div class="detail-container">
+                <div class="detail-header">
+                    <h1>Building Services</h1>
+                    <p>Complete Building Solutions from Concept to Completion</p>
+                </div>
+                <div class="detail-content">
+                    <img src="https://i.pinimg.com/736x/1a/0a/b4/1a0ab4e00a136fbdbf475d4bc3f0b7aa.jpg" alt="Building Services" class="detail-image">
+                    
+                    <h2>Integrated Building Services Engineering</h2>
+                    <p>CERAT offers comprehensive building services that integrate all aspects of modern construction and facility management. Our multidisciplinary approach ensures seamless coordination between electrical, mechanical, and structural systems.</p>
+
+                    <h3>Our Building Services Include:</h3>
+                    <ul>
+                        <li>MEP (Mechanical, Electrical, Plumbing) Design and Installation</li>
+                        <li>Building Automation and Control Systems</li>
+                        <li>Smart Building Technologies</li>
+                        <li>Security and Access Control Systems</li>
+                        <li>Fire Detection and Alarm Systems</li>
+                        <li>Audiovisual and Communication Systems</li>
+                        <li>Vertical Transportation Systems (Lifts and Escalators)</li>
+                        <li>Water Treatment and Management</li>
+                        <li>Waste Management Solutions</li>
+                        <li>Green Building Certifications Support</li>
+                    </ul>
+
+                    <h3>Innovative and Sustainable Design</h3>
+                    <p>We specialize in creating intelligent building environments that prioritize occupant comfort, operational efficiency, and environmental responsibility. Our designs incorporate the latest technologies to create spaces that are both functional and sustainable.</p>
+                    
+                    <h3>Project Management Excellence</h3>
+                    <p>From initial concept through to final handover, our experienced project managers ensure that your building services are delivered on time, within budget, and to the highest quality standards. We coordinate with all stakeholders to ensure smooth project execution.</p>
+
+                    <a href="#" onclick="showPage('home'); return false;" class="back-btn">← Back to Services</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+        <footer>
+           <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p class="icon-location">
+                    2 Roos Street <br>
+                    Fourways Golfpark<br>
+                    Augusta House Sandton<br>
+                   
+                </p>
+                <p class="icon-phone">+27 79 028 6464</p>
+                <a href="mailto:info@yourcompany.com" class="email-link icon-email">
+                    info@Cerat.com
+                </a>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="aboutus.html">About Us</a>
+                <a href="ourservices.html">Services</a>
+                <a href="store1.html">Products</a>
+                <a href="contactUS.html">Contact</a>
+                <a href="#privacy">Privacy Policy</a>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                
+               <div class="social-links">
+                   
+                    <a href="https://www.instagram.com/ceratengineering_ptyltd?igsh=MXhrdnJ5Zzk4bDhvcA%3D%3D" target="cerat pty ltd" title="Twitter">
+                        <span>Instagram</span>
+                    </a>
+                    <br>
+                    <a href="https://x.com/ceratengin74921?s=21" target="cerat pty ltd" title="Instagram">
+                        <span>Twitter</span>
+                    </a>
+                    <br>
+
+                    <a href="http://www.linkedin.com/in/cerat-engineering-pty-ltd-87b90b3aa" target="cerat pty ltd" title="LinkedIn">
+                        <span>LinkedIn</span></a>
+                    <br>
+
+                    <a href="https://www.tiktok.com/@cerat_engineering?_r=1&_t=ZS-93cirtzsGDk" target="cerat pty ltd" title="LinkedIn">
+                        <span>TikTok</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+          <p style="text-align: center; font-size: 12px; color: #888; margin-top: 20px;">
+    Developed by <a href="https://www.instagram.com/phuluso_nemavhola/" style="color: #666; text-decoration: underline;">PHULUSO</a>
+</p>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Cerat PTY(LTD). All rights reserved.</p>
+        </div>
+        </footer>
+    
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>

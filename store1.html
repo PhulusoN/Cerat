@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="LOGO.png" type="image/jpeg">
+    <title>Cerat Store - Premium Industrial Supplies</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: hidden;
+            height: 100%;
+            overscroll-behavior: none;
+        }
+
+        body {
+            overflow-x: hidden;
+            overflow-y: auto;
+            width: 100%;
+            max-width: 100vw;
+            height: 100%;
+            overscroll-behavior: none;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-attachment: fixed;
+            min-height: 100vh;
+            padding-top: 110px;
+        }
+
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .store-banner {
+            width: 100%;
+            height: 400px;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                              url('store hero.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .banner-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+        }
+
+        .banner-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            letter-spacing: 2px;
+        }
+
+        .banner-content p {
+            font-size: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .our-products {
+            background-color: white;
+            padding: 20px;
+            width: 100%;
+        }
+        
+        .our-products h1 {
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .our-products h1::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: rgb(0, 255, 0);
+        }
+
+        .store-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .store-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            width: 100%;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            padding: 20px;
+            padding-bottom: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+            background: #f8f9fa;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+            transition: opacity 0.5s ease, transform 0.4s ease;
+            background: white;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+
+        .product-image img.active {
+            opacity: 1;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            z-index: 5;
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .overlay-title {
+            color: #ff3700;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .specs-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .specs-list li {
+            color: white;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .specs-list li:last-child {
+            border-bottom: none;
+        }
+
+        .specs-list li::before {
+            content: "✓";
+            color: #00ff00;
+            font-weight: bold;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #e74c3c;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-info {
+            padding: 20px;
+            background: white;
+        } 
+
+        .product-name {
+            font-size: 1.2rem;
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            min-height: 2.4em;
+            line-height: 1.2em;
+        } 
+
+        .product-card:hover .product-name {
+            color: #3498db;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            line-height: 1.5;
+            margin-bottom: 12px;
+            max-height: 4.5em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .get-a-quote {
+            background: linear-gradient(135deg, #ff3700 0%, #ff3700 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 55, 0, 0.4);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .get-a-quote:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(255, 55, 0, 0.6);
+        }
+
+        .get-a-quote:active {
+            transform: scale(0.95);
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .stars {
+            color: #f39c12;
+            font-size: 1rem;
+        }
+
+        .rating-count {
+            font-size: 0.85rem;
+            color: #9695a6;
+            margin-left: 5px;
+        }
+
+        .image-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 6px;
+            z-index: 3;
+        }
+
+        .indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: #ff3700;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            z-index: 0;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+
+        .banner {
+            background-color: #000000;
+            color: rgb(255, 255, 255);
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        .logo {
+            margin: 0;
+            font-size: 1.6em;
+        }
+
+        .banner h1 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .banner h1 img {
+            width: 70px;
+            height: 70px;
+        }
+
+        .banner h1 small {
+            display: block;
+            font-size: 0.4em;
+            font-weight: normal;
+        }
+
+        .nav {
+            display: flex;
+        }
+
+        .nav a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 1.1em;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .nav a:hover {
+            color: #ff7300;
+            text-decoration: underline;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .hero-banner {
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            transition: background-image 1s ease-in-out;
+            width: 100%;
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+
+        footer {
+            background-color: #000000;
+            color: #ecf0f1;
+            padding: 60px 20px 20px;
+            position: relative;
+            width: 100%;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #3498db;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ff3700;
+        }
+
+        .email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: #ff3700;
+            color: white !important;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .email-link:hover {
+            background-color: #2980b9;
+        }
+
+        
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+          
+            border-radius: 50%;
+            color: #ecf0f1;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .back-to-top:hover {
+            background-color: #09ff00;
+            transform: translateY(-5px);
+        }
+
+        .back-to-top.show {
+            display: flex;
+        }
+
+        .icon-location::before {
+            content: " ";
+        }
+
+        .icon-email::before {
+            content: " ";
+        }
+
+        .icon-phone::before {
+            content: " ";
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+
+            .banner {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+            }
+
+            .banner h1 {
+                font-size: 1.2em;
+            }
+
+            .banner h1 img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #000000;
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            }
+
+            .nav.active {
+                display: flex;
+            }
+
+            .nav a {
+                margin: 10px 0;
+                font-size: 1em;
+                padding: 10px;
+                border-bottom: 1px solid #333;
+            }
+
+            .store-banner {
+                height: 300px;
+            }
+
+            .banner-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .banner-content p {
+                font-size: 1.1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 20px;
+            }
+
+            .product-card:hover {
+                transform: translateY(-10px) scale(1.02);
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="banner">
+        <h1>
+            <img src="LOGO.png" alt="logo">
+            <div>
+                Cerat<br>
+                <small>WHERE INNOVATION MEETS PRECISION</small>
+            </div>
+        </h1>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="nav" id="navMenu">
+            <a href="home.html">Home</a>
+            <a href="aboutus.html">About Us</a>
+            <a href="ourservices.html">Services</a>
+            <a href="store1.html">Supplies</a>
+            <a href="contactUS.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <div class="store-banner">
+        <div class="banner-content">
+            <h1>Our Store</h1>
+            <p>Discover our Range of Supplies</p>
+        </div>
+    </div>
+
+    <div class="our-products">
+        <h1>Our Products</h1>
+    </div>
+
+    <div class="store-container">
+        <div class="products-grid">
+            
+            <div class="product-card" data-images='["washer.jpg", "bolt.jpg", "bolt2.jpg"]'>
+                <div class="product-image">
+                    <img src="https://i.pinimg.com/736x/70/d9/54/70d954d36cb46a5c5a5618eecad1e998.jpg" alt="Product 1" class="active">
+                    <div class="image-indicators">
+                        <span class="indicator active"></span>
+                    </div>
+                    <div class="product-overlay">
+                        <h4 class="overlay-title">Specifications</h4>
+                        <ul class="specs-list">
+                           <li>Flat Washers</li>
+    <li>Spring Washers (Split Lock)</li>
+    <li>Fender Washers</li>
+    <li>Belleville Washers (Disc Springs)</li>
+    <li>Tooth Lock Washers</li>
+     <li>Hex Nuts</li>
+    <li>Lock Nuts (Nylon Insert)</li>
+    <li>Wing Nuts</li>
+    <li>Castle Nuts</li>
+    <li>Flange Nuts</li>
+    <li>Hex Head Bolts</li>
+    <li>Carriage Bolts</li>
+    <li>Eye Bolts</li>
+    <li>U-Bolts</li>
+    <li>Anchor Bolts</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name"><bold>Washers-Bolt's-Nuts</bold></h3>
+                    <p class="product-description"></p>
+                    <div class="product-footer">
+                        <a href="contactUS.html" class="get-a-quote">Get a Quote</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-images='["rings.jpg", "ring2.jpg", "snap Ring.jpg"]'>
+                <div class="product-image">
+                    <img src="https://i.pinimg.com/736x/c0/0e/e3/c00ee311e2f7ca8362cccefd143abcd0.jpg" alt="Product 2" class="active">
+                    <div class="image-indicators">
+                        <span class="indicator active"></span>
+                    </div>
+                    <div class="product-overlay">
+                        <h4 class="overlay-title">Specifications</h4>
+                        <ul class="specs-list">
+                             <li>O-Rings</li>
+    <li>Retaining Rings (Snap Rings)</li>
+    <li>Piston Rings</li>
+    <li>Backup Rings</li>
+    <li>Quad Rings (X-Rings)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Rings</h3>
+                    <p class="product-description"></p>
+                    <div class="product-footer">
+                        <a href="contactUS.html" class="get-a-quote">Get a Quote</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-images='["bearing 1.jpg", "bearing2.jpg", "bearing3.jpg"]'>
+                <div class="product-image">
+                    <img src="https://i.pinimg.com/736x/01/bf/aa/01bfaab42fa2209a9ba38ad244cbcd7a.jpg" alt="Product 3" class="active">
+                    <div class="image-indicators">
+                        <span class="indicator active"></span>
+                    </div>
+                    <div class="product-overlay">
+                        <h4 class="overlay-title">Specifications</h4>
+                        <ul class="specs-list">
+                            <li>Ball Bearings</li>
+    <li>Roller Bearings</li>
+    <li>Thrust Bearings</li>
+    <li>Needle Bearings</li>
+    <li>Sleeve Bearings (Plain Bearings)</li>
+                            <li>Suitable for pumps and motors</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Bearings</h3>
+                    <p class="product-description"></p>
+                    <div class="product-footer">
+                        <a href="contactUS.html" class="get-a-quote">Get a Quote</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card" data-images='["gasket 1.jpg", "gasket2.jpg", "gasket3.jpg"]'>
+                <div class="product-image">
+                    <img src="bearing3.jpg" alt="Product 4" class="active">
+                    <div class="image-indicators">
+                        <span class="indicator active"></span>
+                    </div>
+                    <div class="product-overlay">
+                        <h4 class="overlay-title">Specifications</h4>
+                        <ul class="specs-list">
+                             <li>Spiral Wound Gaskets</li>
+    <li>Ring Joint Gaskets (RTJ)</li>
+    <li>Flat Sheet Gaskets</li>
+    <li>Compressed Fiber Gaskets</li>
+    <li>Metal Jacketed Gaskets</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Gaskets</h3>
+                    <p class="product-description"></p>
+                    <div class="product-footer">
+                        <a href="contactUS.html" class="get-a-quote">Get a Quote</a>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p class="icon-location">
+                    2 Roos Street<br>
+                    Fourways Golfpark<br>
+                    Augusta House Sandton<br>
+                </p>
+                <p class="icon-phone">+27 79 028 6464</p>
+                <a href="mailto:info@Cerat.com" class="email-link icon-email">
+                    info@Cerat.com
+                </a>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="aboutus.html">About Us</a>
+                <a href="ourservices.html">Services</a>
+                <a href="store1.html">Products</a>
+                <a href="contactUS.html">Contact</a>
+                <a href="#privacy">Privacy Policy</a>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+              
+              <div class="social-links">
+                   
+                    <a href="https://www.instagram.com/ceratengineering_ptyltd?igsh=MXhrdnJ5Zzk4bDhvcA%3D%3D" target="cerat pty ltd" title="Twitter">
+                        <span>Instagram</span>
+                    </a>
+                    <br>
+                    <a href="https://x.com/ceratengin74921?s=21" target="cerat pty ltd" title="Instagram">
+                        <span>Twitter</span>
+                    </a>
+                    <br>
+
+                    <a href="http://www.linkedin.com/in/cerat-engineering-pty-ltd-87b90b3aa" target="cerat pty ltd" title="LinkedIn">
+                        <span>LinkedIn</span></a>
+                    <br>
+
+                    <a href="https://www.tiktok.com/@cerat_engineering?_r=1&_t=ZS-93cirtzsGDk" target="cerat pty ltd" title="LinkedIn">
+                        <span>TikTok</span>
+                    </a>
+                </div>
+                </div>
+        </div>
+          <p style="text-align: center; font-size: 12px; color: #888; margin-top: 20px;">
+    Developed by <a href="https://www.instagram.com/phuluso_nemavhola/" style="color: #666; text-decoration: underline;">PHULUSO</a>
+</p>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Cerat PTY(LTD). All rights reserved.</p>
+        </div>
+    </footer>
+
+    <button class="back-to-top" id="backToTop" title="Back to top">
+        ↑
+    </button>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        class ProductImageSlideshow {
+            constructor(card) {
+                this.card = card;
+                this.imageContainer = card.querySelector('.product-image');
+                this.indicatorContainer = card.querySelector('.image-indicators');
+                
+                const dataImages = card.getAttribute('data-images');
+                if (dataImages) {
+                    this.images = JSON.parse(dataImages);
+                } else {
+                    this.images = Array.from(this.imageContainer.querySelectorAll('img')).map(img => img.src);
+                }
+                
+                this.currentIndex = 0;
+                this.interval = null;
+                this.duration = 3000;
+                
+                this.init();
+            }
+            
+            init() {
+                this.imageContainer.querySelectorAll('img').forEach(img => img.remove());
+                
+                this.images.forEach((src, index) => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = `Product image ${index + 1}`;
+                    if (index === 0) img.classList.add('active');
+                    this.imageContainer.appendChild(img);
+                });
+                
+                if (this.images.length > 1) {
+                    this.indicatorContainer.innerHTML = '';
+                    this.images.forEach((_, index) => {
+                        const indicator = document.createElement('span');
+                        indicator.classList.add('indicator');
+                        if (index === 0) indicator.classList.add('active');
+                        this.indicatorContainer.appendChild(indicator);
+                    });
+                    
+                    this.startRotation();
+                    
+                    this.card.addEventListener('mouseenter', () => this.stopRotation());
+                    this.card.addEventListener('mouseleave', () => this.startRotation());
+                }
+            }
+            
+            showImage(index) {
+                const images = this.imageContainer.querySelectorAll('img');
+                const indicators = this.indicatorContainer.querySelectorAll('.indicator');
+                
+                images.forEach(img => img.classList.remove('active'));
+                indicators.forEach(ind => ind.classList.remove('active'));
+                
+                images[index].classList.add('active');
+                if (indicators[index]) {
+                    indicators[index].classList.add('active');
+                }
+                
+                this.currentIndex = index;
+            }
+            
+            nextImage() {
+                const nextIndex = (this.currentIndex + 1) % this.images.length;
+                this.showImage(nextIndex);
+            }
+            
+            startRotation() {
+                if (this.images.length > 1) {
+                    this.interval = setInterval(() => this.nextImage(), this.duration);
+                }
+            }
+            
+            stopRotation() {
+                if (this.interval) {
+                    clearInterval(this.interval);
+                    this.interval = null;
+                }
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const productCards = document.querySelectorAll('.product-card');
+            productCards.forEach(card => new ProductImageSlideshow(card));
+        });
+
+        const productCards = document.querySelectorAll('.product-card');
+        
+        productCards.forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (!e.target.closest('a')) {
+                    const productName = card.querySelector('.product-name').textContent;
+                    console.log(`Viewing details for: ${productName}`);
+                }
+            });
+        });
+
+        const backToTopButton = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.add('show');
+            } else {
+                backToTopButton.classList.remove('show');
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.footer-section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.6s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
