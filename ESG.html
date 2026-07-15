@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESG - CERAT</title>
+    <link rel="icon" href="LOGO.png" type="image/jpeg">
+     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: hidden;
+        }
+
+        body {
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 110px;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
+
+       .banner {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+        .logo {
+            margin: 0;
+            font-size: 1.6em;
+        }
+
+        .banner h1 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .banner h1 img {
+            width: 70px;
+            height: 70px;
+        }
+
+        .banner h1 small {
+            display: block;
+            font-size: 0.4em;
+            font-weight: normal;
+        }
+
+        .nav {
+            display: flex;
+        }
+
+        .nav a {
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 1.1em;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .nav a:hover {
+            color: #ff7300;
+            text-decoration: underline;
+        }
+
+        .nav a.active-link {
+            color: #ff7300;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background-color: white;
+            transition: all 0.3s ease;
+        }
+
+        .hero-banner {
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            transition: background-image 1s ease-in-out;
+            width: 100%;
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+        }
+
+         .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://commons.wikimedia.org/wiki/Special:FilePath/Renewable%20energy%20park.jpg');
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            padding-top: 140px;
+            padding-bottom: 60px;
+            width: 100%;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        .hero-content {
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content h1 span {
+            color: #ff3700;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .service-content {
+            padding-right: 20px;
+        }
+
+        .service-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 0px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .service-content h2 {
+            color: #ff3700;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .service-content h3 {
+            color: #444;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+           
+        }
+
+        .service-content .sub-tab-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #02a238;
+            background: #eafbef;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-left: 12px;
+            vertical-align: middle;
+        }
+
+        .service-content p {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        .service-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .service-list li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #000000;
+            font-size: 1.05rem;
+        }
+
+         .service-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #ff3700;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .form-sidebar {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-form-container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e0e0e0;
+            position: sticky;
+            top: 130px;
+        }
+
+        .contact-form-container h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color:#02a238;
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(38, 255, 0, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ff3700 0%, #ff6200 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 64, 0, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .success-message,
+        .error-message {
+            display: none;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #02a238;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #ff0019;
+            border: 1px solid #f5c6cb;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-detail-item {
+            margin-bottom: 25px;
+        }
+
+        .contact-detail-item strong {
+            display: block;
+            color: #02a238;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-detail-item p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+       footer {
+            background-color: #000000;
+            color: #ecf0f1;
+            padding: 60px 20px 20px;
+            width: 100%;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            color: #3498db;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            margin-bottom: 10px;
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #ff3700;
+        }
+
+        .email-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: #ff3700;
+            color: white !important;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .email-link:hover {
+            background-color: #2980b9;
+        }
+
+        .social-links a {
+              display: block;
+              padding: 10px 0;
+              color: #ecf0f1;
+              text-decoration: none;
+              transition: color 0.3s ease;
+         }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #95a5a6;
+            font-size: 0.9rem;
+        }
+
+        .icon-location::before {
+            content: " ";
+        }
+
+        .icon-email::before {
+            content: " ";
+        }
+
+        .icon-phone::before {
+            content: " ";
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 80px;
+            }
+
+            .banner {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+            }
+
+            .banner h1 {
+                font-size: 1.2em;
+            }
+
+            .banner h1 img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background-color: #000000;
+                padding: 20px;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+            }
+
+            .nav.active {
+                display: flex;
+            }
+
+            .nav a {
+                margin: 10px 0;
+                font-size: 1em;
+                padding: 10px;
+                border-bottom: 1px solid #333;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .service-content {
+                padding-right: 0;
+            }
+
+            .contact-form-container {
+                position: static;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+   <header class="banner">
+        <h1>
+            <img src="LOGO.png" alt="logo">
+            <div>
+                Cerat<br>
+                <small>WHERE INNOVATION MEET'S PERCISION</small>
+            </div>
+        </h1>
+        <div class="menu-toggle" id="menuToggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="nav" id="navMenu">
+            <a href="index.html#home">Home</a>
+            <a href="miningservices.html">Mining Services</a>
+            <a href="RID.html">RID<a/>
+            <a href="ESG.html" class="active-link">ESG<a/>
+            <a href="ourservices.html">Services</a>
+            <a href="contactUS.html">Contact Us</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1><span>ESG</span> &amp; Decarbonization</h1>
+                    <p>Environmental, Social and Governance advisory built around measurable decarbonization — from carbon accounting to net zero delivery, engineered with the same precision as every CERAT project.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="service-content">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Solarpark%20Anzing%2C%20Panels.jpg" alt="ESG-decarbonization-image" class="service-image">
+                    
+                    <h2>Comprehensive ESG &amp; Decarbonization Services</h2>
+                    <p>We help organizations understand, reduce, and report their environmental impact. Our decarbonization services span strategy, engineering, finance, and monitoring — turning climate commitments into verified, on-the-ground results.</p>
+
+                    <h3>Decarbonization <span class="sub-tab-label"></span></h3>
+                    <hr>
+                    <ul class="service-list">
+                        <li>Carbon Footprint Assessment</li>
+                        <li>Greenhouse Gas (GHG) Emissions Inventory (Scope 1, 2 &amp; 3)</li>
+                        <li>Carbon Accounting and Reporting</li>
+                        <li>Net Zero Strategy Development</li>
+                        <li>Corporate Decarbonization Roadmaps</li>
+                        <li>Science-Based Target (SBT) Development</li>
+                        <li>Climate Risk and Opportunity Assessment</li>
+                        <li>Carbon Neutrality Certification Support</li>
+                        <li>ESG Strategy and Sustainability Consulting</li>
+                        <li>Sustainability Reporting (GRI, TCFD, ISSB, CDP)</li>
+                        <li>Energy Efficiency Assessments</li>
+                        <li>Industrial Energy Audits</li>
+                        <li>Renewable Energy Feasibility Studies</li>
+                        <li>Solar PV System Design and Implementation</li>
+                        <li>Wind Energy Integration</li>
+                        <li>Battery Energy Storage System (BESS) Design</li>
+                        <li>Green Hydrogen Feasibility Studies</li>
+                        <li>Waste-to-Energy Solutions</li>
+                        <li>Biomass and Bioenergy Solutions</li>
+                        <li>Electrification of Industrial Processes</li>
+                        <li>Fleet Electrification Strategy</li>
+                        <li>Electric Vehicle (EV) Charging Infrastructure Planning</li>
+                        <li>Building Energy Management Systems</li>
+                        <li>Smart Grid Integration</li>
+                        <li>Industrial Process Optimization</li>
+                        <li>Heat Recovery System Design</li>
+                        <li>Boiler Efficiency Optimization</li>
+                        <li>Steam System Optimization</li>
+                        <li>Compressed Air System Optimization</li>
+                        <li>HVAC Energy Optimization</li>
+                        <li>Water Conservation and Efficiency Programs</li>
+                        <li>Waste Reduction and Circular Economy Consulting</li>
+                        <li>Sustainable Manufacturing Solutions</li>
+                        <li>Supply Chain Decarbonization</li>
+                        <li>Sustainable Procurement Strategy</li>
+                        <li>Carbon Offset Strategy Development</li>
+                        <li>Carbon Credit Project Development</li>
+                        <li>Carbon Credit Verification Support</li>
+                        <li>Carbon Credit Trading Advisory</li>
+                        <li>Nature-Based Carbon Projects</li>
+                        <li>Reforestation and Afforestation Projects</li>
+                        <li>Blue Carbon Project Development</li>
+                        <li>Methane Reduction Programs</li>
+                        <li>Landfill Gas Recovery Projects</li>
+                        <li>Industrial Emissions Monitoring</li>
+                        <li>Continuous Emissions Monitoring Systems (CEMS)</li>
+                        <li>Carbon Capture, Utilization and Storage (CCUS) Consulting</li>
+                        <li>Life Cycle Assessment (LCA)</li>
+                        <li>Product Carbon Footprint Analysis</li>
+                        <li>Environmental Impact Assessments</li>
+                        <li>Climate Adaptation Planning</li>
+                        <li>Sustainable Infrastructure Planning</li>
+                        <li>Green Building Certification Support (LEED, Green Star)</li>
+                        <li>Sustainable Mining Solutions</li>
+                        <li>Sustainable Water Infrastructure</li>
+                        <li>Sustainable Agriculture Solutions</li>
+                        <li>Environmental Compliance Audits</li>
+                        <li>Regulatory Compliance Consulting</li>
+                        <li>ISO 14001 Environmental Management Systems</li>
+                        <li>ISO 50001 Energy Management Systems</li>
+                        <li>ISO 14064 Greenhouse Gas Verification</li>
+                        <li>Sustainability Training and Capacity Building</li>
+                        <li>Decarbonization Awareness Workshops</li>
+                        <li>Executive Sustainability Training</li>
+                        <li>Digital Carbon Management Platforms</li>
+                        <li>AI-Based Carbon Analytics</li>
+                        <li>IoT Energy Monitoring Systems</li>
+                        <li>Satellite-Based Emissions Monitoring</li>
+                        <li>Digital Twin Development for Energy Optimization</li>
+                        <li>Climate Data Analytics</li>
+                        <li>Renewable Energy Project Management</li>
+                        <li>EPCM Services for Decarbonization Projects</li>
+                        <li>Funding and Green Finance Advisory</li>
+                        <li>Green Bond Advisory</li>
+                        <li>Climate Finance Applications</li>
+                        <li>Government Grant Support</li>
+                        <li>Monitoring, Reporting and Verification (MRV)</li>
+                        <li>Decarbonization Performance Monitoring</li>
+                        <li>Annual Sustainability Reporting</li>
+                        <li>Continuous Improvement Programs</li>
+                    </ul>
+                    <hr>
+                </div>
+
+                <div class="form-sidebar">
+                    <div class="contact-form-container">
+                        <h1>Get in Touch</h1>
+                        <p class="subtitle">We'd love to hear from you. Send us a message!</p>
+                        
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required placeholder="Your name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" required placeholder="Your message here..."></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+
+                        <div class="success-message" id="successMessage">
+                            ✓ Email sent successfully! We'll get back to you soon.
+                        </div>
+                        <div class="error-message" id="errorMessage">
+                            ✗ Failed to send email. Please try again later.
+                        </div>
+
+                        <div class="contact-details">
+                            <div class="contact-detail-item">
+                                <strong> Address</strong>
+                               <p>2 Roos Street<br>Fourways Golfpark<br>Augusta House,Sandton</p>
+                            </div>
+                            
+                            <div class="contact-detail-item">
+                                <strong> Email</strong>
+                                <p>info@cerat.co.za</p>
+                            </div>
+                            <div class="contact-detail-item">
+                                <strong> Business Hours</strong>
+                                <p>Monday - Friday: 8:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 1:00 PM<br>Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer>
+       <div class="footer-container">
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p class="icon-location">
+                2 Roos Street <br>
+                Fourways Golfpark<br>
+                Augusta House Sandton<br>
+               
+            </p>
+    
+            <a href="mailto:info@yourcompany.com" class="email-link icon-email">
+                info@Cerat.com
+            </a>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="aboutus.html">About Us</a>
+            <a href="ourservices.html">Services</a>
+            <a href="store1.html">Products</a>
+            <a href="contactUS.html">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            
+            <div class="social-links">
+               
+                <a href="https://www.instagram.com/ceratengineering_ptyltd?igsh=MXhrdnJ5Zzk4bDhvcA%3D%3D" target="_blank" title="Instagram">
+                    <span>Instagram</span>
+                </a>
+                <br>
+                <a href="https://x.com/ceratengin74921?s=21" target="_blank" title="Twitter">
+                    <span>Twitter</span>
+                </a>
+                <br>
+                <a href="https://www.tiktok.com/@cerat_ptyltd" target="_blank" title="TikTok">
+                    <span>TikTok</span>
+                </a>
+            </div>
+        </div>
+    </div>
+      <p style="text-align: center; font-size: 12px; color: #888; margin-top: 20px;">
+Developed by <a href="https://www.instagram.com/phuluso_nemavhola/" style="color: #666; text-decoration: underline;">PHULUSO</a>
+</p>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Cerat PTY(LTD). All rights reserved.</p>
+    </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        document.querySelectorAll('.nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        (function() {
+            emailjs.init("Y9bT3PflbeZCzldmH");
+        })();
+
+        window.onload = function() {
+            const form = document.getElementById("contactForm");
+            const successMessage = document.getElementById("successMessage");
+            const errorMessage = document.getElementById("errorMessage");
+            
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                successMessage.style.display = "none";
+                errorMessage.style.display = "none";
+
+                const templateParams = {
+                    name: document.getElementById("name").value,
+                    email: document.getElementById("email").value,
+                    title: "Contact Form Submission",
+                    message: document.getElementById("message").value
+                };
+
+                emailjs.send("service_qiizqoh", "template_l9d0x3s", templateParams)
+                    .then(function(response) {
+                        successMessage.style.display = "block";
+                        form.reset();
+                        console.log("Success!", response.status, response.text);
+                    }, function(error) {
+                        errorMessage.style.display = "block";
+                        console.error("Failed...", error);
+                    });
+            });
+        };
+    </script>
+</body>
+</html>
