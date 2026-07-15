@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research, Innovation, Manufacturing and Development - CERAT</title>
     <link rel="icon" href="LOGO.png" type="image/jpeg">
+     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
-        html { scroll-behavior: smooth; }
-
         * {
             margin: 0;
             padding: 0;
@@ -16,48 +15,69 @@
 
         html {
             overflow-x: hidden;
-            height: 100%;
-            overscroll-behavior: none;
         }
 
         body {
             overflow-x: hidden;
-            overflow-y: auto;
             width: 100%;
             max-width: 100vw;
-            height: 100%;
-            overscroll-behavior: none;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
-            background-attachment: fixed;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding-top: 110px;
         }
 
-        img, video, iframe { max-width: 100%; height: auto; }
-
-        /* ===== Banner / Nav ===== */
-        .banner {
-            background-color: #000000;
-            color: rgb(255, 255, 255);
-            padding: 20px 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            width: 100%;
+        main {
+            flex: 1;
         }
 
-        .banner h1 { display: flex; align-items: center; gap: 10px; }
-        .banner h1 img { width: 70px; height: 70px; }
-        .banner h1 small { display: block; font-size: 0.4em; font-weight: normal; }
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
 
-        .nav { display: flex; }
+       .banner {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+        .logo {
+            margin: 0;
+            font-size: 1.6em;
+        }
+
+        .banner h1 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .banner h1 img {
+            width: 70px;
+            height: 70px;
+        }
+
+        .banner h1 small {
+            display: block;
+            font-size: 0.4em;
+            font-weight: normal;
+        }
+
+        .nav {
+            display: flex;
+        }
 
         .nav a {
             color: rgb(255, 255, 255);
@@ -67,8 +87,14 @@
             transition: all 0.2s ease-in-out;
         }
 
-        .nav a:hover { color: #ff7300; text-decoration: underline; }
-        .nav a.active-link { color: #ff7300; }
+        .nav a:hover {
+            color: #ff7300;
+            text-decoration: underline;
+        }
+
+        .nav a.active-link {
+            color: #ff7300;
+        }
 
         .menu-toggle {
             display: none;
@@ -84,217 +110,328 @@
             transition: all 0.3s ease;
         }
 
-        /* ===== Hero ===== */
-        .ms-hero {
-            position: relative;
-            width: 100%;
-            min-height: 55vh;
-            overflow: hidden;
-        }
-
-        .ms-hero .hero-image {
-            width: 100%;
-            height: 100%;
-            min-height: 55vh;
-            object-fit: cover;
-            filter: brightness(0.6);
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .ms-hero .hero-overlay {
-            position: relative;
-            min-height: 55vh;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.7));
+        .hero-banner {
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-        }
-
-        .ms-hero .hero-text { color: white; text-align: center; z-index: 10; max-width: 850px; }
-
-        .ms-hero .hero-text h1 {
-            font-size: 3.1rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .ms-hero .hero-text p {
-            font-size: 1.2rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            line-height: 1.6;
-        }
-
-        /* ===== Intro ===== */
-        .ms-intro {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 30px 20px;
+            color: white;
             text-align: center;
+            transition: background-image 1s ease-in-out;
+            width: 100%;
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            margin: 1rem 0;
         }
 
-        .ms-intro h2 {
-            font-size: 2.3rem;
-            color: #0a0a23;
-            margin-bottom: 20px;
-        }
-
-        .ms-intro p {
-            color: #566266;
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        /* ===== Tabs ===== */
-        .tabs-section {
-            max-width: 1300px;
-            margin: 40px auto 0;
-            padding: 0 20px 80px;
-        }
-
-        .tab-buttons {
+         .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://commons.wikimedia.org/wiki/Special:FilePath/The%20Blue%20Marble%2C%20AS17-148-22727.jpg');
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 60vh;
             display: flex;
-            justify-content: center;
+            align-items: center;
+            padding-top: 140px;
+            padding-bottom: 60px;
+            width: 100%;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            width: 100%;
+        }
+
+        .hero-content {
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content h1 span {
+            color: #ff3700;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .service-content {
+            padding-right: 20px;
+        }
+
+        .service-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 0px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-content h2 {
+            color: #ff3700;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .service-content h3 {
+            color: #444;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+           
+        }
+
+        .sub-tab-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #02a238;
+            background: #eafbef;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-left: 12px;
+            vertical-align: middle;
+        }
+
+        .service-content p {
+            margin-bottom: 20px;
+            color: #555;
+            font-size: 1.1rem;
+        }
+
+        /* ===== Sub tab toggle buttons ===== */
+        .sub-tab-buttons {
+            display: flex;
             gap: 15px;
             flex-wrap: wrap;
-            margin-bottom: 45px;
+            margin: 10px 0 5px;
         }
 
-        .tab-btn {
+        .sub-tab-btn {
             background: #ffffff;
             border: 2px solid #ff3700;
             color: #ff3700;
-            padding: 16px 30px;
-            font-size: 1.05rem;
+            padding: 12px 26px;
+            font-size: 1rem;
             font-weight: 700;
             border-radius: 40px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            font-family: inherit;
         }
 
-        .tab-btn .tab-eyebrow {
-            display: block;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            opacity: 0.7;
-            margin-bottom: 3px;
-        }
-
-        .tab-btn:hover {
+        .sub-tab-btn:hover {
             background: #fff3ee;
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
-        .tab-btn.active {
-            background: linear-gradient(135deg, #ff3700 0%, #ff6a00 100%);
+        .sub-tab-btn.active {
+            background: linear-gradient(135deg, #ff3700 0%, #ff6200 100%);
             color: #ffffff;
             border-color: #ff3700;
             box-shadow: 0 8px 20px rgba(255,55,0,0.35);
         }
 
-        .tab-panel { display: none; animation: fadeInPanel 0.4s ease; }
+        .tab-panel { display: none; }
         .tab-panel.active { display: block; }
 
-        @keyframes fadeInPanel {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .service-list {
+            list-style: none;
+            margin: 20px 0;
         }
 
-        .tab-panel-header {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            background: #ffffff;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .tab-panel-image {
-            flex: 1 1 380px;
-            min-width: 300px;
-            height: 320px;
-            overflow: hidden;
-        }
-
-        .tab-panel-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .tab-panel-copy {
-            flex: 1 1 380px;
-            padding: 30px 40px 30px 0;
-        }
-
-        .tab-panel-copy h3 {
-            font-size: 2rem;
-            color: #02a238;
-            margin-bottom: 15px;
-        }
-
-        .tab-panel-copy p {
-            color: #566266;
-            line-height: 1.7;
+        .service-list li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #000000;
             font-size: 1.05rem;
         }
 
-        .service-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 18px;
+         .service-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #ff3700;
+            font-weight: bold;
+            font-size: 1.5rem;
         }
 
-        .service-list-item {
+        .form-sidebar {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-form-container {
             background: #ffffff;
-            border-left: 5px solid #02a238;
-            border-radius: 8px;
-            padding: 16px 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 1rem;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e0e0e0;
+            position: sticky;
+            top: 130px;
+        }
+
+        .contact-form-container h1 {
             color: #333;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            margin-bottom: 10px;
+            font-size: 2rem;
         }
 
-        .service-list-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 22px rgba(0,0,0,0.12);
-            border-color: #ff3700;
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1rem;
         }
 
-        .service-list-item .check {
-            color: #ffffff;
-            background: #02a238;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            margin-top: 2px;
+        .form-group {
+            margin-bottom: 25px;
         }
 
-        /* ===== Footer ===== */
-        footer {
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color:#02a238;
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(38, 255, 0, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ff3700 0%, #ff6200 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 64, 0, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .success-message,
+        .error-message {
+            display: none;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #02a238;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #ff0019;
+            border: 1px solid #f5c6cb;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-detail-item {
+            margin-bottom: 25px;
+        }
+
+        .contact-detail-item strong {
+            display: block;
+            color: #02a238;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-detail-item p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+       footer {
             background-color: #000000;
             color: #ecf0f1;
             padding: 60px 20px 20px;
-            position: relative;
             width: 100%;
+            margin-top: auto;
         }
 
         .footer-container {
@@ -324,7 +461,9 @@
             transition: color 0.3s ease;
         }
 
-        .footer-section a:hover { color: #ff3700; }
+        .footer-section a:hover {
+            color: #ff3700;
+        }
 
         .email-link {
             display: inline-flex;
@@ -338,16 +477,18 @@
             transition: background-color 0.3s ease;
         }
 
-        .email-link:hover { background-color: #2980b9; }
-
-        .social-links a {
-            display: block;
-            padding: 10px 0;
-            color: #ecf0f1;
-            text-decoration: none;
-            transition: color 0.3s ease;
+        .email-link:hover {
+            background-color: #2980b9;
         }
 
+        .social-links a {
+              display: block;
+              padding: 10px 0;
+              color: #ecf0f1;
+              text-decoration: none;
+              transition: color 0.3s ease;
+         }
+        
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
@@ -356,42 +497,40 @@
             font-size: 0.9rem;
         }
 
-        .back-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: #3498db;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
-            z-index: 1000;
+        .icon-location::before {
+            content: " ";
         }
 
-        .back-to-top:hover { background-color: #09ff00; transform: translateY(-5px); }
-        .back-to-top.show { display: flex; }
+        .icon-email::before {
+            content: " ";
+        }
 
-        .icon-location::before { content: "📍 "; }
-        .icon-email::before { content: "✉️ "; }
-        .icon-phone::before { content: "📞 "; }
+        .icon-phone::before {
+            content: " ";
+        }
 
-        /* ===== Mobile ===== */
         @media (max-width: 768px) {
-            body { padding-top: 80px; }
+            body {
+                padding-top: 80px;
+            }
 
-            .banner { padding: 15px 20px; flex-wrap: wrap; }
-            .banner h1 { font-size: 1.2em; }
-            .banner h1 img { width: 50px; height: 50px; }
+            .banner {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+            }
 
-            .menu-toggle { display: flex; }
+            .banner h1 {
+                font-size: 1.2em;
+            }
+
+            .banner h1 img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
 
             .nav {
                 display: none;
@@ -405,7 +544,9 @@
                 box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             }
 
-            .nav.active { display: flex; }
+            .nav.active {
+                display: flex;
+            }
 
             .nav a {
                 margin: 10px 0;
@@ -414,57 +555,40 @@
                 border-bottom: 1px solid #333;
             }
 
-            .ms-hero { min-height: 45vh; }
-            .ms-hero .hero-image { min-height: 45vh; }
-            .ms-hero .hero-overlay { min-height: 45vh; }
-            .ms-hero .hero-text h1 { font-size: 2.1rem; }
-            .ms-hero .hero-text p { font-size: 1rem; }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
 
-            .ms-intro { padding: 40px 20px 10px; }
-            .ms-intro h2 { font-size: 1.7rem; }
-            .ms-intro p { font-size: 1rem; }
+            .hero-content p {
+                font-size: 1rem;
+            }
 
-            .tabs-section { padding: 0 15px 60px; }
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
 
-            .tab-buttons { gap: 10px; }
-            .tab-btn { padding: 12px 18px; font-size: 0.9rem; white-space: normal; }
+            .service-content {
+                padding-right: 0;
+            }
 
-            .tab-panel-header { flex-direction: column; }
-            .tab-panel-image, .tab-panel-copy { min-width: 100%; flex-basis: 100%; }
-            .tab-panel-copy { padding: 25px 25px 30px; }
-            .tab-panel-image { height: 220px; }
+            .contact-form-container {
+                position: static;
+            }
 
-            .service-list { grid-template-columns: 1fr; gap: 14px; }
-            .service-list-item { font-size: 0.95rem; padding: 14px 16px; }
+            .sub-tab-btn {
+                flex: 1 1 auto;
+                text-align: center;
+            }
 
-            .footer-container { grid-template-columns: 1fr; gap: 30px; }
-            .back-to-top { width: 45px; height: 45px; bottom: 20px; right: 20px; }
-        }
-
-        @media (max-width: 480px) {
-            body { padding-top: 72px; }
-
-            .banner { padding: 12px 15px; }
-            .banner h1 { font-size: 1em; gap: 8px; }
-            .banner h1 img { width: 42px; height: 42px; }
-            .banner h1 small { font-size: 0.55em; }
-
-            .ms-hero .hero-text h1 { font-size: 1.6rem; }
-            .ms-hero .hero-text p { font-size: 0.9rem; }
-
-            .ms-intro h2 { font-size: 1.4rem; }
-
-            .tab-buttons { flex-direction: column; align-items: stretch; }
-            .tab-btn { width: 100%; text-align: center; }
-
-            .tab-panel-copy h3 { font-size: 1.5rem; }
-            .tab-panel-copy p { font-size: 0.95rem; }
-            .tab-panel-image { height: 180px; }
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="banner">
+   <header class="banner">
         <h1>
             <img src="LOGO.png" alt="logo">
             <div>
@@ -478,159 +602,195 @@
             <span></span>
         </div>
         <nav class="nav" id="navMenu">
-             <a href="index.html#home">Home</a>
+            <a href="index.html#home">Home</a>
             <a href="miningservices.html">Mining Services</a>
-            <a href="RID.html">RID<a/>
+            <a href="RID.html" class="active-link">RID<a/>
             <a href="ESG.html">ESG<a/>
             <a href="ourservices.html">Services</a>
             <a href="contactUS.html">Contact Us</a>
         </nav>
     </header>
 
-    <section class="ms-hero">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/The%20Blue%20Marble%2C%20AS17-148-22727.jpg" alt="Research and innovation" class="hero-image">
-        <div class="hero-overlay">
-            <div class="hero-text">
-                <h1>Research, Innovation, Manufacturing and Development</h1>
-                <p>Pushing beyond conventional engineering — from renewable power systems on the ground to satellite technology in low Earth orbit.</p>
-            </div>
-        </div>
-    </section>
-
-    <div class="ms-intro">
-        <h2>Engineering the Next Frontier</h2>
-        <p>CERAT's Research, Innovation, Manufacturing and Development division combines renewable energy engineering with advanced satellite technology, delivering forward-looking solutions that power industries and connect the world from the ground up — and from orbit down.</p>
-    </div>
-
-    <div class="tabs-section">
-        <div class="tab-buttons">
-            <button class="tab-btn active" data-tab="renewable">
-                <span class="tab-eyebrow"></span>
-                Renewable Energy
-            </button>
-            <button class="tab-btn" data-tab="satellites">
-                <span class="tab-eyebrow"></span>
-                LEO Satellites
-            </button>
-        </div>
-
-        <!-- Renewable Energy -->
-        <div class="tab-panel active" id="renewable">
-            <div class="tab-panel-header">
-                <div class="tab-panel-image">
-                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Solar%20Panels.jpg" alt="Renewable energy solar panels">
-                </div>
-                <div class="tab-panel-copy">
-                    <h3>Renewable Energy</h3>
-                    <p>Full-spectrum clean energy solutions — from solar, wind, and storage to microgrids and green hydrogen — engineered, financed, and maintained for industrial, mining, and agricultural applications.</p>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Research, Innovation, <span>Manufacturing</span> &amp; Development</h1>
+                    <p>Pushing beyond conventional engineering — from renewable power systems on the ground to satellite technology in low Earth orbit.</p>
                 </div>
             </div>
-            <div class="service-list">
-                <div class="service-list-item"><span class="check">✓</span>Solar Energy Solutions</div>
-                <div class="service-list-item"><span class="check">✓</span>Battery Energy Storage Systems (BESS)</div>
-                <div class="service-list-item"><span class="check">✓</span>Wind Energy</div>
-                <div class="service-list-item"><span class="check">✓</span>Hybrid Power Systems</div>
-                <div class="service-list-item"><span class="check">✓</span>Microgrid Solutions</div>
-                <div class="service-list-item"><span class="check">✓</span>Electrical Engineering</div>
-                <div class="service-list-item"><span class="check">✓</span>Energy Efficiency Services</div>
-                <div class="service-list-item"><span class="check">✓</span>EV Charging Infrastructure</div>
-                <div class="service-list-item"><span class="check">✓</span>Green Hydrogen</div>
-                <div class="service-list-item"><span class="check">✓</span>Carbon &amp; Sustainability</div>
-                <div class="service-list-item"><span class="check">✓</span>Engineering, Procurement, Construction &amp; Management (EPCM)</div>
-                <div class="service-list-item"><span class="check">✓</span>Operations &amp; Maintenance (O&amp;M)</div>
-                <div class="service-list-item"><span class="check">✓</span>Renewable Energy Consulting</div>
-                <div class="service-list-item"><span class="check">✓</span>Smart Energy Solutions</div>
-                <div class="service-list-item"><span class="check">✓</span>Mining &amp; Industrial Renewable Energy Solutions</div>
-                <div class="service-list-item"><span class="check">✓</span>Agriculture &amp; Water Solutions</div>
-                <div class="service-list-item"><span class="check">✓</span>Financing &amp; Project Development</div>
-                <div class="service-list-item"><span class="check">✓</span>Research, Development &amp; Innovation (RDI)</div>
+        </section>
+
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="service-content">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Solar%20Panels.jpg" alt="renewable-energy-image" class="service-image" id="serviceImage">
+                    
+                    <h2>Comprehensive RID Services</h2>
+                    <p>CERAT's Research, Innovation, Manufacturing and Development division combines renewable energy engineering with advanced satellite technology, delivering forward-looking solutions that power industries and connect the world from the ground up — and from orbit down.</p>
+
+                    <div class="sub-tab-buttons">
+                        <button type="button" class="sub-tab-btn active" data-tab="renewable" data-image="https://commons.wikimedia.org/wiki/Special:FilePath/Solar%20Panels.jpg">Renewable Energy</button>
+                        <button type="button" class="sub-tab-btn" data-tab="satellites" data-image="https://commons.wikimedia.org/wiki/Special:FilePath/KNACKSAT-2%20in%20clean%20room.jpg">LEO Satellites</button>
+                    </div>
+
+                    <!-- Sub Tab 1 -->
+                    <div class="tab-panel active" id="renewable">
+                        <h3>Renewable Energy <span class="sub-tab-label">Sub Tab 1</span></h3>
+                        <hr>
+                        <ul class="service-list">
+                            <li>Solar Energy Solutions</li>
+                            <li>Battery Energy Storage Systems (BESS)</li>
+                            <li>Wind Energy</li>
+                            <li>Hybrid Power Systems</li>
+                            <li>Microgrid Solutions</li>
+                            <li>Electrical Engineering</li>
+                            <li>Energy Efficiency Services</li>
+                            <li>EV Charging Infrastructure</li>
+                            <li>Green Hydrogen</li>
+                            <li>Carbon &amp; Sustainability</li>
+                            <li>Engineering, Procurement, Construction &amp; Management (EPCM)</li>
+                            <li>Operations &amp; Maintenance (O&amp;M)</li>
+                            <li>Renewable Energy Consulting</li>
+                            <li>Smart Energy Solutions</li>
+                            <li>Mining &amp; Industrial Renewable Energy Solutions</li>
+                            <li>Agriculture &amp; Water Solutions</li>
+                            <li>Financing &amp; Project Development</li>
+                            <li>Research, Development &amp; Innovation (RDI)</li>
+                        </ul>
+                        <hr>
+                    </div>
+
+                    <!-- Sub Tab 2 -->
+                    <div class="tab-panel" id="satellites">
+                        <h3>LEO Satellites <span class="sub-tab-label">Sub Tab 2</span></h3>
+                        <hr>
+                        <ul class="service-list">
+                            <li>Mission Analysis and Systems Engineering</li>
+                            <li>Satellite Design and Engineering</li>
+                            <li>Satellite Manufacturing and Assembly</li>
+                            <li>Payload Development</li>
+                            <li>Assembly, Integration and Testing (AIT)</li>
+                            <li>Launch Services Integration</li>
+                            <li>Ground Segment Development</li>
+                            <li>Mission Operations</li>
+                            <li>Earth Observation Services</li>
+                            <li>Defence and Security Solutions</li>
+                            <li>Satellite Communication Services</li>
+                            <li>Data Analytics and Artificial Intelligence</li>
+                            <li>Satellite Constellation Design</li>
+                            <li>Custom Satellite Manufacturing</li>
+                            <li>Research and Development (R&amp;D)</li>
+                            <li>Satellite Maintenance and Life Extension</li>
+                            <li>Consulting and Technical Advisory Services</li>
+                            <li>Training and Capacity Building</li>
+                        </ul>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="form-sidebar">
+                    <div class="contact-form-container">
+                        <h1>Get in Touch</h1>
+                        <p class="subtitle">We'd love to hear from you. Send us a message!</p>
+                        
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required placeholder="Your name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" required placeholder="Your message here..."></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+
+                        <div class="success-message" id="successMessage">
+                            ✓ Email sent successfully! We'll get back to you soon.
+                        </div>
+                        <div class="error-message" id="errorMessage">
+                            ✗ Failed to send email. Please try again later.
+                        </div>
+
+                        <div class="contact-details">
+                            <div class="contact-detail-item">
+                                <strong> Address</strong>
+                               <p>2 Roos Street<br>Fourways Golfpark<br>Augusta House,Sandton</p>
+                            </div>
+                            
+                            <div class="contact-detail-item">
+                                <strong> Email</strong>
+                                <p>info@cerat.co.za</p>
+                            </div>
+                            <div class="contact-detail-item">
+                                <strong> Business Hours</strong>
+                                <p>Monday - Friday: 8:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 1:00 PM<br>Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <!-- LEO Satellites -->
-        <div class="tab-panel" id="satellites">
-            <div class="tab-panel-header">
-                <div class="tab-panel-image">
-                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/KNACKSAT-2%20in%20clean%20room.jpg" alt="LEO satellite in clean room">
-                </div>
-                <div class="tab-panel-copy">
-                    <h3>LEO Satellites</h3>
-                    <p>End-to-end small satellite capability — from mission analysis and design through manufacturing, launch integration, and in-orbit operations — supporting Earth observation, communications, and defence applications.</p>
-                </div>
-            </div>
-            <div class="service-list">
-                <div class="service-list-item"><span class="check">✓</span>Mission Analysis and Systems Engineering</div>
-                <div class="service-list-item"><span class="check">✓</span>Satellite Design and Engineering</div>
-                <div class="service-list-item"><span class="check">✓</span>Satellite Manufacturing and Assembly</div>
-                <div class="service-list-item"><span class="check">✓</span>Payload Development</div>
-                <div class="service-list-item"><span class="check">✓</span>Assembly, Integration and Testing (AIT)</div>
-                <div class="service-list-item"><span class="check">✓</span>Launch Services Integration</div>
-                <div class="service-list-item"><span class="check">✓</span>Ground Segment Development</div>
-                <div class="service-list-item"><span class="check">✓</span>Mission Operations</div>
-                <div class="service-list-item"><span class="check">✓</span>Earth Observation Services</div>
-                <div class="service-list-item"><span class="check">✓</span>Defence and Security Solutions</div>
-                <div class="service-list-item"><span class="check">✓</span>Satellite Communication Services</div>
-                <div class="service-list-item"><span class="check">✓</span>Data Analytics and Artificial Intelligence</div>
-                <div class="service-list-item"><span class="check">✓</span>Satellite Constellation Design</div>
-                <div class="service-list-item"><span class="check">✓</span>Custom Satellite Manufacturing</div>
-                <div class="service-list-item"><span class="check">✓</span>Research and Development (R&amp;D)</div>
-                <div class="service-list-item"><span class="check">✓</span>Satellite Maintenance and Life Extension</div>
-                <div class="service-list-item"><span class="check">✓</span>Consulting and Technical Advisory Services</div>
-                <div class="service-list-item"><span class="check">✓</span>Training and Capacity Building</div>
-            </div>
-        </div>
-    </div>
+    </main>
 
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p class="icon-location">
-                    2 Roos Street <br>
-                    Fourways Golfpark<br>
-                    Augusta House Sandton<br>
-                </p>
-                <p class="icon-phone">+27 79 028 6464</p>
-                <a href="mailto:info@yourcompany.com" class="email-link icon-email">
-                    info@Cerat.com
+       <div class="footer-container">
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p class="icon-location">
+                2 Roos Street <br>
+                Fourways Golfpark<br>
+                Augusta House Sandton<br>
+               
+            </p>
+    
+            <a href="mailto:info@yourcompany.com" class="email-link icon-email">
+                info@Cerat.com
+            </a>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="aboutus.html">About Us</a>
+            <a href="ourservices.html">Services</a>
+            <a href="store1.html">Products</a>
+            <a href="contactUS.html">Contact</a>
+            <a href="#privacy">Privacy Policy</a>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+            
+            <div class="social-links">
+               
+                <a href="https://www.instagram.com/ceratengineering_ptyltd?igsh=MXhrdnJ5Zzk4bDhvcA%3D%3D" target="_blank" title="Instagram">
+                    <span>Instagram</span>
+                </a>
+                <br>
+                <a href="https://x.com/ceratengin74921?s=21" target="_blank" title="Twitter">
+                    <span>Twitter</span>
+                </a>
+                <br>
+                <a href="https://www.tiktok.com/@cerat_ptyltd" target="_blank" title="TikTok">
+                    <span>TikTok</span>
                 </a>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <a href="index.html#home">Home</a>
-                <a href="index.html#aboutus">About Us</a>
-                <a href="ourservices.html">Services</a>
-                <a href="miningservices.html">Mining Services</a>
-                <a href="rimd.html">Research &amp; Innovation</a>
-                <a href="store1.html">Products</a>
-                <a href="contactUS.html">Contact</a>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/ceratengineering_ptyltd?igsh=MXhrdnJ5Zzk4bDhvcA%3D%3D" target="cerat pty ltd" title="Instagram">
-                        <span>Instagram</span>
-                    </a>
-                    <br>
-                    <a href="https://x.com/ceratengin74921?s=21" target="cerat pty ltd" title="Twitter">
-                        <span>Twitter</span>
-                    </a>
-                    <br>
-                    <a href="https://www.tiktok.com/@cerat_ptyltd" target="cerat pty ltd" title="TikTok">
-                        <span>TikTok</span>
-                    </a>
-                </div>
-            </div>
         </div>
-        <p style="text-align: center; font-size: 12px; color: #888; margin-top: 20px;">
-            Developed by <a href="https://www.instagram.com/phuluso_nemavhola/" style="color: #666; text-decoration: underline;">PHULUSO</a>
-        </p>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Cerat PTY(LTD). All rights reserved.</p>
-        </div>
+    </div>
+      <p style="text-align: center; font-size: 12px; color: #888; margin-top: 20px;">
+Developed by <a href="https://www.instagram.com/phuluso_nemavhola/" style="color: #666; text-decoration: underline;">PHULUSO</a>
+</p>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Cerat PTY(LTD). All rights reserved.</p>
+    </div>
     </footer>
-
-    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
 
     <script>
         const menuToggle = document.getElementById('menuToggle');
@@ -646,28 +806,62 @@
             });
         });
 
-        window.addEventListener('scroll', () => {
-            const backToTop = document.getElementById('backToTop');
-            if (window.scrollY > 400) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        });
-
-        // Tab switching
-        const tabButtons = document.querySelectorAll('.tab-btn');
+        // Sub-tab toggle: switches which service list is shown, and swaps the image to match
+        const subTabButtons = document.querySelectorAll('.sub-tab-btn');
         const tabPanels = document.querySelectorAll('.tab-panel');
+        const serviceImage = document.getElementById('serviceImage');
 
-        tabButtons.forEach(btn => {
+        subTabButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                tabButtons.forEach(b => b.classList.remove('active'));
+                subTabButtons.forEach(b => b.classList.remove('active'));
                 tabPanels.forEach(p => p.classList.remove('active'));
 
                 btn.classList.add('active');
                 document.getElementById(btn.dataset.tab).classList.add('active');
+
+                if (btn.dataset.image) {
+                    serviceImage.style.opacity = '0';
+                    setTimeout(() => {
+                        serviceImage.src = btn.dataset.image;
+                        serviceImage.style.opacity = '1';
+                    }, 150);
+                }
             });
         });
+
+        (function() {
+            emailjs.init("Y9bT3PflbeZCzldmH");
+        })();
+
+        window.onload = function() {
+            const form = document.getElementById("contactForm");
+            const successMessage = document.getElementById("successMessage");
+            const errorMessage = document.getElementById("errorMessage");
+            
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                successMessage.style.display = "none";
+                errorMessage.style.display = "none";
+
+                const templateParams = {
+                    name: document.getElementById("name").value,
+                    email: document.getElementById("email").value,
+                    title: "Contact Form Submission",
+                    message: document.getElementById("message").value
+                };
+
+                emailjs.send("service_qiizqoh", "template_l9d0x3s", templateParams)
+                    .then(function(response) {
+                        successMessage.style.display = "block";
+                        form.reset();
+                        console.log("Success!", response.status, response.text);
+                    }, function(error) {
+                        errorMessage.style.display = "block";
+                        console.error("Failed...", error);
+                    });
+            });
+        };
     </script>
 </body>
 </html>
