@@ -5,9 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mining Services - CERAT</title>
     <link rel="icon" href="LOGO.png" type="image/jpeg">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
-        html { scroll-behavior: smooth; }
-
         * {
             margin: 0;
             padding: 0;
@@ -16,48 +15,69 @@
 
         html {
             overflow-x: hidden;
-            height: 100%;
-            overscroll-behavior: none;
         }
 
         body {
             overflow-x: hidden;
-            overflow-y: auto;
             width: 100%;
             max-width: 100vw;
-            height: 100%;
-            overscroll-behavior: none;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
-            background-attachment: fixed;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             padding-top: 110px;
         }
 
-        img, video, iframe { max-width: 100%; height: auto; }
-
-        /* ===== Banner / Nav ===== */
-        .banner {
-            background-color: #000000;
-            color: rgb(255, 255, 255);
-            padding: 20px 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            width: 100%;
+        main {
+            flex: 1;
         }
 
-        .banner h1 { display: flex; align-items: center; gap: 10px; }
-        .banner h1 img { width: 70px; height: 70px; }
-        .banner h1 small { display: block; font-size: 0.4em; font-weight: normal; }
+        img, video, iframe {
+            max-width: 100%;
+            height: auto;
+        }
 
-        .nav { display: flex; }
+       .banner {
+    background-color: #000000;
+    color: rgb(255, 255, 255);
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+        .logo {
+            margin: 0;
+            font-size: 1.6em;
+        }
+
+        .banner h1 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .banner h1 img {
+            width: 70px;
+            height: 70px;
+        }
+
+        .banner h1 small {
+            display: block;
+            font-size: 0.4em;
+            font-weight: normal;
+        }
+
+        .nav {
+            display: flex;
+        }
 
         .nav a {
             color: rgb(255, 255, 255);
@@ -67,8 +87,14 @@
             transition: all 0.2s ease-in-out;
         }
 
-        .nav a:hover { color: #ff7300; text-decoration: underline; }
-        .nav a.active-link { color: #ff7300; }
+        .nav a:hover {
+            color: #ff7300;
+            text-decoration: underline;
+        }
+
+        .nav a.active-link {
+            color: #ff7300;
+        }
 
         .menu-toggle {
             display: none;
@@ -84,217 +110,309 @@
             transition: all 0.3s ease;
         }
 
-        /* ===== Hero ===== */
-        .ms-hero {
-            position: relative;
-            width: 100%;
-            min-height: 55vh;
-            overflow: hidden;
-        }
-
-        .ms-hero .hero-image {
-            width: 100%;
-            height: 100%;
-            min-height: 55vh;
-            object-fit: cover;
-            filter: brightness(0.6);
-            position: absolute;
-            top: 0;
-            left: 0;
-        }
-
-        .ms-hero .hero-overlay {
-            position: relative;
-            min-height: 55vh;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.65));
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://commons.wikimedia.org/wiki/Special:FilePath/Giant%20Mining%20Truck.jpg');
+            background-position: center;
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 60vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            padding: 20px;
+            padding-top: 140px;
+            padding-bottom: 60px;
+            width: 100%;
         }
 
-        .ms-hero .hero-text { color: white; text-align: center; z-index: 10; max-width: 800px; }
-
-        .ms-hero .hero-text h1 {
-            font-size: 3.5rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .ms-hero .hero-text p {
-            font-size: 1.2rem;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            line-height: 1.6;
-        }
-
-        /* ===== Intro ===== */
-        .ms-intro {
-            max-width: 1100px;
+        .hero-container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 30px 20px;
-            text-align: center;
+            padding: 2rem;
+            width: 100%;
         }
 
-        .ms-intro h2 {
-            font-size: 2.3rem;
-            color: #0a0a23;
+        .hero-content {
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content h1 span {
+            color: #ff3700;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .content-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        .service-content {
+            padding-right: 20px;
+        }
+
+        .service-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 0px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-content h2 {
+            color: #ff3700;
             margin-bottom: 20px;
+            font-size: 2rem;
         }
 
-        .ms-intro p {
-            color: #566266;
+        .service-content h3 {
+            color: #444;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .sub-tab-label {
+            display: inline-block;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #02a238;
+            background: #eafbef;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-left: 12px;
+            vertical-align: middle;
+        }
+
+        .service-content p {
+            margin-bottom: 20px;
+            color: #555;
             font-size: 1.1rem;
-            line-height: 1.7;
         }
 
-        /* ===== Tabs ===== */
-        .tabs-section {
-            max-width: 1300px;
-            margin: 40px auto 0;
-            padding: 0 20px 80px;
-        }
-
-        .tab-buttons {
+        /* ===== Sub tab toggle buttons ===== */
+        .sub-tab-buttons {
             display: flex;
-            justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
-            margin-bottom: 45px;
+            margin: 10px 0 5px;
         }
 
-        .tab-btn {
+        .sub-tab-btn {
             background: #ffffff;
             border: 2px solid #ff3700;
             color: #ff3700;
-            padding: 16px 30px;
-            font-size: 1.05rem;
+            padding: 12px 26px;
+            font-size: 1rem;
             font-weight: 700;
             border-radius: 40px;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            font-family: inherit;
         }
 
-        .tab-btn .tab-eyebrow {
-            display: block;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            opacity: 0.7;
-            margin-bottom: 3px;
-        }
-
-        .tab-btn:hover {
+        .sub-tab-btn:hover {
             background: #fff3ee;
-            transform: translateY(-3px);
+            transform: translateY(-2px);
         }
 
-        .tab-btn.active {
-            background: linear-gradient(135deg, #ff3700 0%, #ff6a00 100%);
+        .sub-tab-btn.active {
+            background: linear-gradient(135deg, #ff3700 0%, #ff6200 100%);
             color: #ffffff;
             border-color: #ff3700;
             box-shadow: 0 8px 20px rgba(255,55,0,0.35);
         }
 
-        .tab-panel { display: none; animation: fadeInPanel 0.4s ease; }
+        .tab-panel { display: none; }
         .tab-panel.active { display: block; }
 
-        @keyframes fadeInPanel {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .service-list {
+            list-style: none;
+            margin: 20px 0;
         }
 
-        .tab-panel-header {
-            display: flex;
-            gap: 40px;
-            align-items: center;
-            background: #ffffff;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .tab-panel-image {
-            flex: 1 1 380px;
-            min-width: 300px;
-            height: 320px;
-            overflow: hidden;
-        }
-
-        .tab-panel-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .tab-panel-copy {
-            flex: 1 1 380px;
-            padding: 30px 40px 30px 0;
-        }
-
-        .tab-panel-copy h3 {
-            font-size: 2rem;
-            color: #02a238;
-            margin-bottom: 15px;
-        }
-
-        .tab-panel-copy p {
-            color: #566266;
-            line-height: 1.7;
+        .service-list li {
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            color: #000000;
             font-size: 1.05rem;
         }
 
-        .service-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 18px;
+         .service-list li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #ff3700;
+            font-weight: bold;
+            font-size: 1.5rem;
         }
 
-        .service-list-item {
+        .form-sidebar {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-form-container {
             background: #ffffff;
-            border-left: 5px solid #02a238;
-            border-radius: 8px;
-            padding: 16px 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            font-size: 1rem;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            border: 1px solid #e0e0e0;
+            position: sticky;
+            top: 130px;
+        }
+
+        .contact-form-container h1 {
             color: #333;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            margin-bottom: 10px;
+            font-size: 2rem;
         }
 
-        .service-list-item:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 22px rgba(0,0,0,0.12);
-            border-color: #ff3700;
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1rem;
         }
 
-        .service-list-item .check {
-            color: #ffffff;
-            background: #02a238;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            flex-shrink: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.75rem;
-            margin-top: 2px;
+        .form-group {
+            margin-bottom: 25px;
         }
 
-        /* ===== Footer ===== */
-        footer {
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background-color: #f9f9f9;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color:#02a238;
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(38, 255, 0, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 140px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #ff3700 0%, #ff6200 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 64, 0, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #000000 0%, #333333 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .success-message,
+        .error-message {
+            display: none;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        .success-message {
+            background-color: #d4edda;
+            color: #02a238;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error-message {
+            background-color: #f8d7da;
+            color: #ff0019;
+            border: 1px solid #f5c6cb;
+        }
+
+        .contact-details {
+            margin-top: 30px;
+        }
+
+        .contact-detail-item {
+            margin-bottom: 25px;
+        }
+
+        .contact-detail-item strong {
+            display: block;
+            color: #02a238;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-detail-item p {
+            margin: 0;
+            color: #555;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+       footer {
             background-color: #000000;
             color: #ecf0f1;
             padding: 60px 20px 20px;
-            position: relative;
             width: 100%;
+            margin-top: auto;
         }
 
         .footer-container {
@@ -324,7 +442,9 @@
             transition: color 0.3s ease;
         }
 
-        .footer-section a:hover { color: #ff3700; }
+        .footer-section a:hover {
+            color: #ff3700;
+        }
 
         .email-link {
             display: inline-flex;
@@ -338,22 +458,36 @@
             transition: background-color 0.3s ease;
         }
 
-        .email-link:hover { background-color: #2980b9; }
-
-        .social-links a {
-            display: block;
-            padding: 10px 0;
-            color: #ecf0f1;
-            text-decoration: none;
-            transition: color 0.3s ease;
+        .email-link:hover {
+            background-color: #2980b9;
         }
 
+        .social-links a {
+              display: block;
+              padding: 10px 0;
+              color: #ecf0f1;
+              text-decoration: none;
+              transition: color 0.3s ease;
+         }
+        
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
             border-top: 1px solid #34495e;
             color: #95a5a6;
             font-size: 0.9rem;
+        }
+
+        .icon-location::before {
+            content: "📍 ";
+        }
+
+        .icon-email::before {
+            content: "✉️ ";
+        }
+
+        .icon-phone::before {
+            content: "📞 ";
         }
 
         .back-to-top {
@@ -376,22 +510,37 @@
             z-index: 1000;
         }
 
-        .back-to-top:hover { background-color: #09ff00; transform: translateY(-5px); }
-        .back-to-top.show { display: flex; }
+        .back-to-top:hover {
+            background-color: #09ff00;
+            transform: translateY(-5px);
+        }
 
-        .icon-location::before { content: "📍 "; }
-        .icon-email::before { content: "✉️ "; }
-        .icon-phone::before { content: "📞 "; }
+        .back-to-top.show {
+            display: flex;
+        }
 
-        /* ===== Mobile ===== */
         @media (max-width: 768px) {
-            body { padding-top: 80px; }
+            body {
+                padding-top: 80px;
+            }
 
-            .banner { padding: 15px 20px; flex-wrap: wrap; }
-            .banner h1 { font-size: 1.2em; }
-            .banner h1 img { width: 50px; height: 50px; }
+            .banner {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+            }
 
-            .menu-toggle { display: flex; }
+            .banner h1 {
+                font-size: 1.2em;
+            }
+
+            .banner h1 img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
 
             .nav {
                 display: none;
@@ -405,7 +554,9 @@
                 box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             }
 
-            .nav.active { display: flex; }
+            .nav.active {
+                display: flex;
+            }
 
             .nav a {
                 margin: 10px 0;
@@ -414,57 +565,47 @@
                 border-bottom: 1px solid #333;
             }
 
-            .ms-hero { min-height: 45vh; }
-            .ms-hero .hero-image { min-height: 45vh; }
-            .ms-hero .hero-overlay { min-height: 45vh; }
-            .ms-hero .hero-text h1 { font-size: 2.3rem; }
-            .ms-hero .hero-text p { font-size: 1rem; }
+            .hero-content h1 {
+                font-size: 2rem;
+            }
 
-            .ms-intro { padding: 40px 20px 10px; }
-            .ms-intro h2 { font-size: 1.7rem; }
-            .ms-intro p { font-size: 1rem; }
+            .hero-content p {
+                font-size: 1rem;
+            }
 
-            .tabs-section { padding: 0 15px 60px; }
+            .content-wrapper {
+                grid-template-columns: 1fr;
+            }
 
-            .tab-buttons { gap: 10px; }
-            .tab-btn { padding: 12px 18px; font-size: 0.9rem; white-space: normal; }
+            .service-content {
+                padding-right: 0;
+            }
 
-            .tab-panel-header { flex-direction: column; }
-            .tab-panel-image, .tab-panel-copy { min-width: 100%; flex-basis: 100%; }
-            .tab-panel-copy { padding: 25px 25px 30px; }
-            .tab-panel-image { height: 220px; }
+            .contact-form-container {
+                position: static;
+            }
 
-            .service-list { grid-template-columns: 1fr; gap: 14px; }
-            .service-list-item { font-size: 0.95rem; padding: 14px 16px; }
+            .sub-tab-btn {
+                flex: 1 1 auto;
+                text-align: center;
+            }
 
-            .footer-container { grid-template-columns: 1fr; gap: 30px; }
-            .back-to-top { width: 45px; height: 45px; bottom: 20px; right: 20px; }
-        }
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
 
-        @media (max-width: 480px) {
-            body { padding-top: 72px; }
-
-            .banner { padding: 12px 15px; }
-            .banner h1 { font-size: 1em; gap: 8px; }
-            .banner h1 img { width: 42px; height: 42px; }
-            .banner h1 small { font-size: 0.55em; }
-
-            .ms-hero .hero-text h1 { font-size: 1.7rem; }
-            .ms-hero .hero-text p { font-size: 0.9rem; }
-
-            .ms-intro h2 { font-size: 1.4rem; }
-
-            .tab-buttons { flex-direction: column; align-items: stretch; }
-            .tab-btn { width: 100%; text-align: center; }
-
-            .tab-panel-copy h3 { font-size: 1.5rem; }
-            .tab-panel-copy p { font-size: 0.95rem; }
-            .tab-panel-image { height: 180px; }
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                right: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <header class="banner">
+   <header class="banner">
         <h1>
             <img src="LOGO.png" alt="logo">
             <div>
@@ -487,202 +628,230 @@
         </nav>
     </header>
 
-    <section class="ms-hero">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Giant%20Mining%20Truck.jpg" alt="Mining operations" class="hero-image">
-        <div class="hero-overlay">
-            <div class="hero-text">
-                <h1>Mining Services</h1>
-                <p>End-to-end engineering, optimization, and design solutions built for the demands of modern mining operations.</p>
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1>Mining <span>Services</span></h1>
+                    <p>End-to-end engineering, optimization, and design solutions built for the demands of modern mining operations.</p>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="service-content">
+                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Elshitsa-open-pit-copper-mine.jpg" alt="EPCM mining project" class="service-image" id="serviceImage">
+
+                    <h2>Comprehensive Mining Expertise</h2>
+                    <p>From concept to commissioning, CERAT delivers integrated EPCM, plant optimization, and design development services that keep mining and processing operations safe, efficient, and future-ready.</p>
+
+                    <div class="sub-tab-buttons">
+                        <button type="button" class="sub-tab-btn active" data-tab="epcm" data-image="https://commons.wikimedia.org/wiki/Special:FilePath/Elshitsa-open-pit-copper-mine.jpg">EPCM</button>
+                        <button type="button" class="sub-tab-btn" data-tab="optimization" data-image="https://commons.wikimedia.org/wiki/Special:FilePath/CalPortland%20Mojave%20Cement%20Plant-2.jpg">Plant Optimization &amp; Management</button>
+                        <button type="button" class="sub-tab-btn" data-tab="design" data-image="https://commons.wikimedia.org/wiki/Special:FilePath/Interior%20View%20of%20Drafting%20Room%20in%20ERB%20-%20GPN-2000-001447.jpg">Design Development</button>
+                    </div>
+
+                    <!-- EPCM -->
+                    <div class="tab-panel active" id="epcm">
+                        <h3>EPCM <span class="sub-tab-label"></span></h3>
+                        <hr>
+                        <ul class="service-list">
+                            <li>Concept design</li>
+                            <li>Feasibility studies</li>
+                            <li>Front-End Engineering Design (FEED)</li>
+                            <li>Detailed engineering design</li>
+                            <li>Procurement management</li>
+                            <li>Construction management</li>
+                            <li>Commissioning</li>
+                            <li>Project management</li>
+                            <li>Owner's Engineer services</li>
+                            <li>Quality assurance and control</li>
+                        </ul>
+                        <hr>
+                    </div>
+
+                    <!-- Plant Optimization and Management -->
+                    <div class="tab-panel" id="optimization">
+                        <h3>Plant Optimization &amp; Management <span class="sub-tab-label"></span></h3>
+                        <hr>
+                        <ul class="service-list">
+                            <li>Process Assessment</li>
+                            <li>Process Optimization</li>
+                            <li>Equipment Optimization</li>
+                            <li>Bottleneck Analysis</li>
+                            <li>Debottlenecking</li>
+                            <li>Capacity Expansion</li>
+                            <li>Energy Optimization</li>
+                            <li>Water Optimization</li>
+                            <li>Process Simulation</li>
+                            <li>Digital Twin Solutions</li>
+                            <li>Operational Readiness</li>
+                            <li>Performance Benchmarking</li>
+                            <li>Root Cause Analysis</li>
+                            <li>Reliability Engineering</li>
+                            <li>Predictive Maintenance</li>
+                            <li>Asset Performance Management</li>
+                            <li>Automation Optimization</li>
+                            <li>Control System Tuning</li>
+                            <li>Instrumentation Optimization</li>
+                            <li>Data Analytics</li>
+                            <li>AI &amp; Machine Learning</li>
+                            <li>Operational Excellence</li>
+                            <li>Process Safety</li>
+                            <li>Shutdown &amp; Turnaround Optimization</li>
+                            <li>Commissioning &amp; Performance Testing</li>
+                            <li>Waste Reduction</li>
+                            <li>Environmental Optimization</li>
+                            <li>Decarbonization</li>
+                            <li>Mining Process Optimization</li>
+                            <li>Metallurgical Optimization</li>
+                            <li>Mechanical System Optimization</li>
+                            <li>Electrical System Optimization</li>
+                            <li>Utility System Optimization</li>
+                            <li>Production Planning Optimization</li>
+                            <li>Plant Layout Optimization</li>
+                            <li>Continuous Improvement</li>
+                            <li>Technical Training</li>
+                            <li>Performance Monitoring</li>
+                            <li>Plant Audits</li>
+                            <li>Technical Consulting</li>
+                        </ul>
+                        <hr>
+                    </div>
+
+                    <!-- Design Development -->
+                    <div class="tab-panel" id="design">
+                        <h3>Design Development <span class="sub-tab-label"></span></h3>
+                        <hr>
+                        <ul class="service-list">
+                            <li>3D Laser Scanning &amp; Reality Capture</li>
+                            <li>As-Built Surveys</li>
+                            <li>3D CAD Modelling</li>
+                            <li>Engineering Design Development</li>
+                            <li>General Arrangement (GA) Drawings</li>
+                            <li>Manufacturing &amp; Fabrication Drawings</li>
+                            <li>Piping &amp; Instrumentation Diagrams (P&amp;IDs)</li>
+                            <li>Piping Design &amp; Isometric Drawings</li>
+                            <li>Structural Steel Design &amp; Drawings</li>
+                            <li>Equipment Design</li>
+                            <li>Reverse Engineering</li>
+                            <li>BIM &amp; Digital Twin Development</li>
+                            <li>Design Optimization &amp; Value Engineering</li>
+                            <li>Engineering Calculations &amp; Design Verification</li>
+                            <li>Bill of Materials (BOM) &amp; Material Take-Offs (MTOs)</li>
+                            <li>Engineering Drawing Conversion</li>
+                            <li>CAD Drafting Services</li>
+                            <li>Document &amp; Drawing Management</li>
+                            <li>Engineering Design Outsourcing</li>
+                            <li>Multi-Disciplinary Engineering Support</li>
+                            <li>Design Review &amp; Constructability Assessments</li>
+                            <li>Plant Expansion &amp; Brownfield Engineering</li>
+                            <li>Engineering Data Books &amp; Design Documentation</li>
+                        </ul>
+                        <hr>
+                    </div>
+                </div>
+
+                <div class="form-sidebar">
+                    <div class="contact-form-container">
+                        <h1>Get in Touch</h1>
+                        <p class="subtitle">We'd love to hear from you. Send us a message!</p>
+
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required placeholder="Your name">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" required placeholder="Your message here..."></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+
+                        <div class="success-message" id="successMessage">
+                            ✓ Email sent successfully! We'll get back to you soon.
+                        </div>
+                        <div class="error-message" id="errorMessage">
+                            ✗ Failed to send email. Please try again later.
+                        </div>
+
+                        <div class="contact-details">
+                            <div class="contact-detail-item">
+                                <strong> Address</strong>
+                               <p>2 Roos Street<br>Fourways Golfpark<br>Augusta House,Sandton</p>
+                            </div>
+
+                            <div class="contact-detail-item">
+                                <strong> Email</strong>
+                                <p>info@cerat.co.za</p>
+                            </div>
+                            <div class="contact-detail-item">
+                                <strong> Business Hours</strong>
+                                <p>Monday - Friday: 8:00 AM - 5:00 PM<br>Saturday: 9:00 AM - 1:00 PM<br>Sunday: Closed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
 
-    <div class="ms-intro">
-        <h2>Comprehensive Mining Expertise</h2>
-        <p>From concept to commissioning, CERAT delivers integrated EPCM, plant optimization, and design development services that keep mining and processing operations safe, efficient, and future-ready. Explore each discipline below.</p>
-    </div>
-
-    <div class="tabs-section">
-        <div class="tab-buttons">
-            <button class="tab-btn active" data-tab="epcm">
-                <span class="tab-eyebrow"></span>
-                EPCM
-            </button>
-            <button class="tab-btn" data-tab="optimization">
-                <span class="tab-eyebrow"></span>
-                Plant Optimization &amp; Management
-            </button>
-            <button class="tab-btn" data-tab="design">
-                <span class="tab-eyebrow"></span>
-                Design Development
-            </button>
-        </div>
-
-        <!-- EPCM -->
-        <div class="tab-panel active" id="epcm">
-            <div class="tab-panel-header">
-                <div class="tab-panel-image">
-                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Elshitsa-open-pit-copper-mine.jpg" alt="EPCM mining project">
-                </div>
-                <div class="tab-panel-copy">
-                    <h3>EPCM</h3>
-                    <p>Engineering, Procurement and Construction Management delivered as one accountable service — guiding projects from first concept through to a fully commissioned, quality-assured plant.</p>
-                </div>
-            </div>
-            <div class="service-list">
-                <div class="service-list-item"><span class="check">✓</span>Concept design</div>
-                <div class="service-list-item"><span class="check">✓</span>Feasibility studies</div>
-                <div class="service-list-item"><span class="check">✓</span>Front-End Engineering Design (FEED)</div>
-                <div class="service-list-item"><span class="check">✓</span>Detailed engineering design</div>
-                <div class="service-list-item"><span class="check">✓</span>Procurement management</div>
-                <div class="service-list-item"><span class="check">✓</span>Construction management</div>
-                <div class="service-list-item"><span class="check">✓</span>Commissioning</div>
-                <div class="service-list-item"><span class="check">✓</span>Project management</div>
-                <div class="service-list-item"><span class="check">✓</span>Owner's Engineer services</div>
-                <div class="service-list-item"><span class="check">✓</span>Quality assurance and control</div>
-            </div>
-        </div>
-
-        <!-- Plant Optimization and management -->
-        <div class="tab-panel" id="optimization">
-            <div class="tab-panel-header">
-                <div class="tab-panel-image">
-                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/CalPortland%20Mojave%20Cement%20Plant-2.jpg" alt="Plant optimization and management">
-                </div>
-                <div class="tab-panel-copy">
-                    <h3>Plant Optimization and Management</h3>
-                    <p>Data-driven process, equipment, and operational improvements that lift throughput, reliability, and safety while reducing cost, energy, water, and environmental impact across the plant lifecycle.</p>
-                </div>
-            </div>
-            <div class="service-list">
-                <div class="service-list-item"><span class="check">✓</span>Process Assessment</div>
-                <div class="service-list-item"><span class="check">✓</span>Process Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Equipment Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Bottleneck Analysis</div>
-                <div class="service-list-item"><span class="check">✓</span>Debottlenecking</div>
-                <div class="service-list-item"><span class="check">✓</span>Capacity Expansion</div>
-                <div class="service-list-item"><span class="check">✓</span>Energy Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Water Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Process Simulation</div>
-                <div class="service-list-item"><span class="check">✓</span>Digital Twin Solutions</div>
-                <div class="service-list-item"><span class="check">✓</span>Operational Readiness</div>
-                <div class="service-list-item"><span class="check">✓</span>Performance Benchmarking</div>
-                <div class="service-list-item"><span class="check">✓</span>Root Cause Analysis</div>
-                <div class="service-list-item"><span class="check">✓</span>Reliability Engineering</div>
-                <div class="service-list-item"><span class="check">✓</span>Predictive Maintenance</div>
-                <div class="service-list-item"><span class="check">✓</span>Asset Performance Management</div>
-                <div class="service-list-item"><span class="check">✓</span>Automation Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Control System Tuning</div>
-                <div class="service-list-item"><span class="check">✓</span>Instrumentation Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Data Analytics</div>
-                <div class="service-list-item"><span class="check">✓</span>AI &amp; Machine Learning</div>
-                <div class="service-list-item"><span class="check">✓</span>Operational Excellence</div>
-                <div class="service-list-item"><span class="check">✓</span>Process Safety</div>
-                <div class="service-list-item"><span class="check">✓</span>Shutdown &amp; Turnaround Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Commissioning &amp; Performance Testing</div>
-                <div class="service-list-item"><span class="check">✓</span>Waste Reduction</div>
-                <div class="service-list-item"><span class="check">✓</span>Environmental Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Decarbonization</div>
-                <div class="service-list-item"><span class="check">✓</span>Mining Process Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Metallurgical Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Mechanical System Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Electrical System Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Utility System Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Production Planning Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Plant Layout Optimization</div>
-                <div class="service-list-item"><span class="check">✓</span>Continuous Improvement</div>
-                <div class="service-list-item"><span class="check">✓</span>Technical Training</div>
-                <div class="service-list-item"><span class="check">✓</span>Performance Monitoring</div>
-                <div class="service-list-item"><span class="check">✓</span>Plant Audits</div>
-                <div class="service-list-item"><span class="check">✓</span>Technical Consulting</div>
-            </div>
-        </div>
-
-        <!-- Design Development -->
-        <div class="tab-panel" id="design">
-            <div class="tab-panel-header">
-                <div class="tab-panel-image">
-                    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Interior%20View%20of%20Drafting%20Room%20in%20ERB%20-%20GPN-2000-001447.jpg" alt="Engineering design and drafting">
-                </div>
-                <div class="tab-panel-copy">
-                    <h3>Design Development</h3>
-                    <p>From reality capture and 3D modelling through to fabrication-ready drawings and full engineering data books — precise, multi-disciplinary design support for greenfield and brownfield projects alike.</p>
-                </div>
-            </div>
-            <div class="service-list">
-                <div class="service-list-item"><span class="check">✓</span>3D Laser Scanning &amp; Reality Capture</div>
-                <div class="service-list-item"><span class="check">✓</span>As-Built Surveys</div>
-                <div class="service-list-item"><span class="check">✓</span>3D CAD Modelling</div>
-                <div class="service-list-item"><span class="check">✓</span>Engineering Design Development</div>
-                <div class="service-list-item"><span class="check">✓</span>General Arrangement (GA) Drawings</div>
-                <div class="service-list-item"><span class="check">✓</span>Manufacturing &amp; Fabrication Drawings</div>
-                <div class="service-list-item"><span class="check">✓</span>Piping &amp; Instrumentation Diagrams (P&amp;IDs)</div>
-                <div class="service-list-item"><span class="check">✓</span>Piping Design &amp; Isometric Drawings</div>
-                <div class="service-list-item"><span class="check">✓</span>Structural Steel Design &amp; Drawings</div>
-                <div class="service-list-item"><span class="check">✓</span>Equipment Design</div>
-                <div class="service-list-item"><span class="check">✓</span>Reverse Engineering</div>
-                <div class="service-list-item"><span class="check">✓</span>BIM &amp; Digital Twin Development</div>
-                <div class="service-list-item"><span class="check">✓</span>Design Optimization &amp; Value Engineering</div>
-                <div class="service-list-item"><span class="check">✓</span>Engineering Calculations &amp; Design Verification</div>
-                <div class="service-list-item"><span class="check">✓</span>Bill of Materials (BOM) &amp; Material Take-Offs (MTOs)</div>
-                <div class="service-list-item"><span class="check">✓</span>Engineering Drawing Conversion</div>
-                <div class="service-list-item"><span class="check">✓</span>CAD Drafting Services</div>
-                <div class="service-list-item"><span class="check">✓</span>Document &amp; Drawing Management</div>
-                <div class="service-list-item"><span class="check">✓</span>Engineering Design Outsourcing</div>
-                <div class="service-list-item"><span class="check">✓</span>Multi-Disciplinary Engineering Support</div>
-                <div class="service-list-item"><span class="check">✓</span>Design Review &amp; Constructability Assessments</div>
-                <div class="service-list-item"><span class="check">✓</span>Plant Expansion &amp; Brownfield Engineering</div>
-                <div class="service-list-item"><span class="check">✓</span>Engineering Data Books &amp; Design Documentation</div>
-            </div>
-        </div>
-    </div>
+    </main>
 
     <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p class="icon-location">
-                    2 Roos Street <br>
-                    Fourways Golfpark<br>
-                    Augusta House Sandton<br>
-                </p>
-                
-                <a href="mailto:info@yourcompany.com" class="email-link icon-email">
-                    info@Cerat.com
+       <div class="footer-container">
+        <div class="footer-section">
+            <h3>Contact Us</h3>
+            <p class="icon-location">
+                2 Roos Street <br>
+                Fourways Golfpark<br>
+                Augusta House Sandton<br>
+            </p>
+
+            <a href="mailto:info@yourcompany.com" class="email-link icon-email">
+                info@Cerat.com
+            </a>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <a href="index.html#home">Home</a>
+            <a href="index.html#aboutus">About Us</a>
+            <a href="ourservices.html">Services</a>
+            <a href="store1.html">Products</a>
+            <a href="contactUS.html">Contact</a>
+        </div>
+        <div class="footer-section">
+            <h3>Follow Us</h3>
+
+            <div class="social-links">
+                <a href="https://www.instagram.com/ceratengineering_ptyltd?igsh=MXhrdnJ5Zzk4bDhvcA%3D%3D" target="_blank" title="Instagram">
+                    <span>Instagram</span>
+                </a>
+                <br>
+                <a href="https://x.com/ceratengin74921?s=21" target="_blank" title="Twitter">
+                    <span>Twitter</span>
+                </a>
+                <br>
+                <a href="https://www.tiktok.com/@cerat_ptyltd" target="_blank" title="TikTok">
+                    <span>TikTok</span>
                 </a>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <a href="index.html#home">Home</a>
-                <a href="index.html#aboutus">About Us</a>
-                <a href="ourservices.html">Services</a>
-                <a href="miningservices.html">Mining Services</a>
-                <a href="store1.html">Products</a>
-                <a href="contactUS.html">Contact</a>
-            </div>
-            <div class="footer-section">
-                <h3>Follow Us</h3>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/ceratengineering_ptyltd?igsh=MXhrdnJ5Zzk4bDhvcA%3D%3D" target="cerat pty ltd" title="Instagram">
-                        <span>Instagram</span>
-                    </a>
-                    <br>
-                    <a href="https://x.com/ceratengin74921?s=21" target="cerat pty ltd" title="Twitter">
-                        <span>Twitter</span>
-                    </a>
-                    <br>
-                    <a href="https://www.tiktok.com/@cerat_ptyltd" target="cerat pty ltd" title="TikTok">
-                        <span>TikTok</span>
-                    </a>
-                </div>
-            </div>
         </div>
-        <p style="text-align: center; font-size: 12px; color: #888; margin-top: 20px;">
-            Developed by <a href="https://www.instagram.com/phuluso_nemavhola/" style="color: #666; text-decoration: underline;">PHULUSO</a>
-        </p>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Cerat PTY(LTD). All rights reserved.</p>
-        </div>
+    </div>
+      <p style="text-align: center; font-size: 12px; color: #888; margin-top: 20px;">
+Developed by <a href="https://www.instagram.com/phuluso_nemavhola/" style="color: #666; text-decoration: underline;">PHULUSO</a>
+</p>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Cerat PTY(LTD). All rights reserved.</p>
+    </div>
     </footer>
 
     <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0, behavior:'smooth'})">↑</button>
@@ -710,19 +879,62 @@
             }
         });
 
-        // Tab switching
-        const tabButtons = document.querySelectorAll('.tab-btn');
+        // Sub-tab toggle: switches which service list is shown, and swaps the image to match
+        const subTabButtons = document.querySelectorAll('.sub-tab-btn');
         const tabPanels = document.querySelectorAll('.tab-panel');
+        const serviceImage = document.getElementById('serviceImage');
 
-        tabButtons.forEach(btn => {
+        subTabButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                tabButtons.forEach(b => b.classList.remove('active'));
+                subTabButtons.forEach(b => b.classList.remove('active'));
                 tabPanels.forEach(p => p.classList.remove('active'));
 
                 btn.classList.add('active');
                 document.getElementById(btn.dataset.tab).classList.add('active');
+
+                if (btn.dataset.image) {
+                    serviceImage.style.opacity = '0';
+                    setTimeout(() => {
+                        serviceImage.src = btn.dataset.image;
+                        serviceImage.style.opacity = '1';
+                    }, 150);
+                }
             });
         });
+
+        (function() {
+            emailjs.init("Y9bT3PflbeZCzldmH");
+        })();
+
+        window.onload = function() {
+            const form = document.getElementById("contactForm");
+            const successMessage = document.getElementById("successMessage");
+            const errorMessage = document.getElementById("errorMessage");
+
+            form.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                successMessage.style.display = "none";
+                errorMessage.style.display = "none";
+
+                const templateParams = {
+                    name: document.getElementById("name").value,
+                    email: document.getElementById("email").value,
+                    title: "Contact Form Submission",
+                    message: document.getElementById("message").value
+                };
+
+                emailjs.send("service_qiizqoh", "template_l9d0x3s", templateParams)
+                    .then(function(response) {
+                        successMessage.style.display = "block";
+                        form.reset();
+                        console.log("Success!", response.status, response.text);
+                    }, function(error) {
+                        errorMessage.style.display = "block";
+                        console.error("Failed...", error);
+                    });
+            });
+        };
     </script>
 </body>
 </html>
